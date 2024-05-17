@@ -1,0 +1,81 @@
+<nz-layout>
+    <nz-header>
+        <div nz-row nzJustify="space-between">
+            <div class="logo" nz-col nzSpan="4">
+                <img src='assets/images/logo.png' alt="logo" />
+            </div>
+            <div class="search" nz-col nzSpan="14">
+                <nz-input-group class="inputSearch" nzSearch [nzAddOnAfter]="suffixIconButton">
+                    <input type="text" nz-input placeholder="input search text" />
+                </nz-input-group>
+                <ng-template #suffixIconButton>
+                    <button nz-button nzType="primary" nzSearch><span nz-icon nzType="search"></span></button>
+                </ng-template>
+            </div>
+            <div nz-col class="info" nzSpan="6">
+                <ng-container *ngIf="!isLogin; else infoUser">
+                    <button routerLink="/login" nzSize="default" nz-button>Đăng nhập</button>
+                </ng-container>
+                <ng-template #infoUser>
+                    <div class="userName">Hi, {{user.name}}</div>
+                    <nz-button-group>
+                        <nz-avatar class="avatar" nzIcon="user" style="background-color:#87d068;" nz-dropdown [nzDropdownMenu]="infoNemu"></nz-avatar>
+                    </nz-button-group>
+                    <nz-dropdown-menu #infoNemu="nzDropdownMenu">
+                        <ul nz-menu>
+                            <li routerLink="/profile" nz-menu-item>
+                                <span nz-icon nzType="user" nzTheme="outline"></span>
+                                Thông tin cá nhân
+                            </li>
+                            <li (click)="logOut()" nz-menu-item>
+                                <span nz-icon nzType="logout" nzTheme="outline"></span>
+                                Đăng xuất
+                            </li>
+                        </ul>
+                    </nz-dropdown-menu>
+                </ng-template>
+            </div>
+        </div>
+    </nz-header>
+    <nz-content>
+        <ul nz-menu nzMode="horizontal" class="navBar">
+            <li class="navItem" nz-menu-item nzSelected>
+                <span nz-icon nzType="home" nzTheme="fill" style="color: rgb(8, 84, 44);"></span>
+                <div>
+                    Trang chủ
+                </div>
+            </li>
+            <li class="navItem" nz-menu-item>
+                <span nz-icon nzType="schedule" nzTheme="fill" style="color: rgb(197, 240, 25);"></span>
+                <div>
+                    Đặt lịch khám
+                </div>
+            </li>
+            <li class="navItem" nz-menu-item>
+                <span nz-icon nzType="bars" nzTheme="outline" style="color: rgb(244, 27, 27);"></span>
+                <div>
+                    Dịch vụ
+                </div>
+            </li>
+            <li class="navItem" nz-menu-item>
+                <span nz-icon nzType="customer-service" nzTheme="fill" style="color: rgb(8, 61, 84);"></span>
+                <div>
+                    Tư vấn viên
+                </div>
+            </li>
+            <li class="navItem" nz-menu-item>
+                <span nz-icon nzType="robot" nzTheme="fill" style="color: rgb(73, 8, 84);"></span>
+                <div>
+                    Chatbot
+                </div>
+            </li>
+        </ul>
+        <nz-breadcrumb>
+            <nz-breadcrumb-item>Home</nz-breadcrumb-item>
+            <nz-breadcrumb-item>List</nz-breadcrumb-item>
+            <nz-breadcrumb-item>App</nz-breadcrumb-item>
+        </nz-breadcrumb>
+        <div class="inner-content">Content</div>
+    </nz-content>
+    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+</nz-layout>

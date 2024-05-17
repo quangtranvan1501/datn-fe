@@ -1,0 +1,167 @@
+<ng-container>
+    <nz-spin nzTip="Đang xử lý!" [nzSpinning]="isLoading">
+        <div class="login-page">
+            <span class="closepage" nz-icon nzType="close" nzTheme="outline" routerLink="/"></span>
+            <div class="wapper" nz-row>
+                <div class="login-logo" nz-col>
+                    <img src="assets/images/logo.png" alt="logo" />
+                </div>
+                <form nz-form [formGroup]="validateForm" class="login-form" nz-col (ngSubmit)="submitForm()">
+                    <div class="login-title" nz-row nzJustify="space-evenly">
+                        <div nz-col nzSpan="12" class="title-login" (click)="selectLogin()" [class.title-choose]=selected>
+                            Đăng nhập</div>
+                        <div nz-col nzSpan="12" class="title-register" (click)="selectRegister()"
+                            [class.title-choose]=!selected>Đăng ký</div>
+                    </div>
+                    <ng-container *ngIf="selected; else registerTemplate ">
+                        <nz-form-item nz-margin="0 10px 0 0">
+                            <nz-form-control nzErrorTip="Username/Email không được bỏ trống!">
+                                <nz-input-group nzPrefixIcon="user">
+                                    <input type="text" nzSize="large" nz-input formControlName="userName"
+                                        placeholder="Username/Email" />
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item nz-margin="0 10px 0 0">
+                            <nz-form-control nzErrorTip="Mật khẩu không được bỏ trống!">
+                                <nz-input-group nzPrefixIcon="lock" [nzSuffix]="suffixTemplate">
+                                    <input type="{{ passwordVisible ? 'text' : 'password' }}" nzSize="large" nz-input
+                                        formControlName="password" placeholder="Password" />
+                                </nz-input-group>
+                            </nz-form-control>
+                            <ng-template #suffixTemplate>
+                                <span nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+                                    (click)="passwordVisible = !passwordVisible"></span>
+                            </ng-template>
+                        </nz-form-item>
+                        <div nz-row class="login-form-margin " nz-margin="0 10px 0 0">
+                            <div nz-col [nzSpan]="12">
+                                <label nz-checkbox formControlName="remember">
+                                    <span>Remember me</span>
+                                </label>
+                            </div>
+                            <div nz-col [nzSpan]="12">
+                                <a class="login-form-forgot" (click)="showModal()">Quên mật khẩu</a>
+                            </div>
+                        </div>
+                        <button nz-button class="login-form-button login-form-margin " nzSize="large" nz-margin="0 10px 0 0"
+                            nzType="primary">Đăng nhập</button>
+                    </ng-container>
+                    <ng-template #registerTemplate>
+                        <form nz-form nz-row nzJustify="start" [formGroup]="validateFormRegister" (ngSubmit)="register()">
+                            <nz-form-item nz-col [nzSpan]="12">
+                                <div nz-row>
+                                    <nz-form-label  nz-col [nzSpan]="8" nzRequired>Username</nz-form-label>
+                                    <nz-form-control nz-col [nzSpan]="15" nzValidatingTip="Validating...">
+                                        <input nz-input formControlName="username" />
+                                    </nz-form-control>
+                                </div>
+                            </nz-form-item>
+                            <nz-form-item nz-col [nzSpan]="12">
+                                <div nz-row>
+                                    <nz-form-label [nzSpan]="9" nzRequired>SĐT</nz-form-label>
+                                    <nz-form-control [nzSpan]="15">
+                                        <input nz-input formControlName="phoneNumber"  type="number"/>
+                                    </nz-form-control>
+                                </div>
+                            </nz-form-item>
+                            <nz-form-item nz-col [nzSpan]="24">
+                                <div nz-row nzJustify="start"> 
+                                    <nz-form-label [nzSpan]="4" nzRequired>E-mail</nz-form-label>
+                                    <nz-form-control [nzSpan]="20">
+                                        <input nz-input formControlName="email" placeholder="email" type="email" />
+                                    </nz-form-control>
+                                </div>
+                            </nz-form-item>
+                            <nz-form-item nz-col [nzSpan]="12">
+                                <div nz-row>
+                                    <nz-form-label [nzSpan]="8" nzRequired>Password</nz-form-label>
+                                    <nz-form-control [nzSpan]="15" nzDisableAutoTips nzErrorTip="Vui lòng nhập mật khẩu!">
+                                        <input nz-input type="password" formControlName="password"
+                                            (ngModelChange)="validateConfirmPassword()" />
+                                    </nz-form-control>
+                                </div>
+                            </nz-form-item>
+                            <nz-form-item nz-col nzSpan="12">
+                                <div nz-row>
+                                    <nz-form-label [nzSpan]="9" nzRequired>Confirm Pass</nz-form-label>
+                                    <nz-form-control [nzSpan]="15" nzDisableAutoTips [nzErrorTip]="passwordErrorTpl">
+                                        <input nz-input type="password" formControlName="confirm" />
+                                        <ng-template #passwordErrorTpl let-control>
+                                            <div *ngIf="control.errors?.required">
+                                                Vui lòng nhập lại mật khẩu!
+                                            </div>
+                                            <div *ngIf="control.errors?.confirm">
+                                                Mật khẩu không trùng khớp!
+                                            </div>
+                                        </ng-template>
+                                    </nz-form-control>
+                                </div>
+                            </nz-form-item>
+                            <nz-form-item nz-col [nzSpan]="24">
+                                <div nz-row>
+                                    <nz-form-label [nzSpan]="4" nzRequired>Họ và tên</nz-form-label>
+                                    <nz-form-control [nzSpan]="20">
+                                        <input nz-input formControlName="name" />
+                                    </nz-form-control>
+                                </div>
+                            </nz-form-item>
+                            <nz-form-item nz-col [nzSpan]="12">
+                                <div nz-row>
+                                    <nz-form-label [nzSpan]="8" nzRequired>Ngày sinh</nz-form-label>
+                                    <nz-form-control [nzSpan]="15">
+                                        <nz-date-picker formControlName="birthday"
+                                            nzPlaceHolder="Chọn ngày sinh"></nz-date-picker>
+                                    </nz-form-control>
+                                </div>
+                            </nz-form-item>
+                            <nz-form-item nz-col [nzSpan]="12">
+                                <div nz-row>
+                                    <nz-form-label [nzSpan]="9" nzRequired>Giới tính</nz-form-label>
+                                    <nz-form-control [nzSpan]="15">
+                                        <nz-radio-group formControlName="gender">
+                                            <label nz-radio nzValue="Male">Nam</label>
+                                            <label nz-radio nzValue="Female">Nữ</label>
+                                        </nz-radio-group>
+                                    </nz-form-control>
+                                </div>
+                            </nz-form-item>
+                            <nz-form-item nz-col [nzSpan]="24">
+                                <div nz-row nzJustify="start"> 
+                                    <nz-form-label [nzSpan]="4" nzRequired>Địa chỉ</nz-form-label>
+                                    <nz-form-control [nzSpan]="20">
+                                        <input nz-input formControlName="address" type="text" />
+                                    </nz-form-control>
+                                </div>
+                            </nz-form-item>
+                            <nz-form-item nz-col>
+                                <nz-form-control [nzOffset]="7" [nzSpan]="12">
+                                    <button nz-button nzType="primary">Đăng ký</button>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </form>
+                    </ng-template>
+                </form>
+            </div>
+        </div>
+    </nz-spin>
+</ng-container>
+
+<nz-modal [(nzVisible)]="visible" [nzFooter]="modalFooter" nzTitle="Nhập email đăng ký tài khoản"
+    (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <ng-container *nzModalContent>
+        <form nz-form [formGroup]="validateFormForgotPass">
+            <nz-form-item>
+                <nz-form-control>
+                    <nz-input-group>
+                        <input nzSize="large" formControlName="forgotPass" nz-input placeholder="Email" />
+                    </nz-input-group>
+                </nz-form-control>
+            </nz-form-item>
+        </form>
+    </ng-container>
+    <ng-template #modalFooter>
+        <button nz-button nzType="default" (click)="handleCancel()">Hủy</button>
+        <button class="btnSubmit" nz-button (click)="handleOk()" [nzLoading]="isConfirmLoading">Đổi mật khẩu</button>
+    </ng-template>
+</nz-modal>

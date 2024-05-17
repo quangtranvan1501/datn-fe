@@ -21,6 +21,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 @NgModule({
   imports: [
     WelcomeRoutingModule,
@@ -41,8 +42,8 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     NzCheckboxModule,
     NzDatePickerModule,
     NzRadioModule,
-    NzMessageModule
-
+    NzMessageModule,
+    NzTimePickerModule
   ],
   declarations: [
     WelcomeComponent,

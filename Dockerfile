@@ -13,3 +13,5 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 WORKDIR /usr/share/nginx/html
 COPY --from=builder /usr/src/app/dist/datn_frontend2/ .
+
+EXPOSE 80

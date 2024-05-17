@@ -5,15 +5,11 @@ WORKDIR /usr/src/app
 COPY . .
 RUN npm install && npm run build
 
-# Step 2: Use build output from 'builder'
-FROM nginx:stable-alpine
-LABEL version="1.0"
+FROM nginxinc/nginx-unprivileged:1.23-alpine-perl
 
-COPY nginx.conf /etc/nginx/nginx.conf
+# Use COPY --link to avoid breaking cache if we change the second stage base image
+COPY --link nginx.conf /etc/nginx/conf.d/default.conf
 
-WORKDIR /usr/share/nginx/html
-COPY --from=builder /usr/src/app/dist/datn_frontend2/ .
+COPY --link --from=builder /usr/src/app/dist/datn_frontend2/ /usr/share/nginx/html
 
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 8080

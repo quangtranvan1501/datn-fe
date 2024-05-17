@@ -6,7 +6,7 @@ COPY . .
 RUN npm install && npm run build
 
 # Step 2: Use build output from 'builder'
-FROM nginx:stable-alpine
+FROM nginxinc/nginx-unprivileged:1.23-alpine-perl
 LABEL version="1.0"
 
 COPY nginx.conf /etc/nginx/nginx.conf

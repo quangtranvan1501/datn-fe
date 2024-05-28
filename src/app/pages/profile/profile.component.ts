@@ -3,6 +3,12 @@ import { FormControl, FormGroup, NonNullableFormBuilder, Validators } from '@ang
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { AppService } from 'src/app/service/app.service';
 import { AuthService } from 'src/app/service/auth.service';
+import { NzI18nService, en_US, vi_VN } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import vi from '@angular/common/locales/vi';
+import { User } from 'src/app/@types';
+
+registerLocaleData(vi);
 
 @Component({
   selector: 'app-profile',
@@ -10,11 +16,19 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
-  isLogin: boolean = false
+  constructor(
+    private authService: AuthService,
+    private appService: AppService,
+    private fb: NonNullableFormBuilder,
+    private message: NzMessageService,
+    private i18n: NzI18nService,
+  ) { }
+
   isChangeInfo: boolean = false
   isConfirmLoading = false;
   token = this.authService.getToken()
-  
+  user: any;
+
   validateFormRegister: FormGroup<{
     username: FormControl<string>;
     phoneNumber: FormControl<string>;
@@ -35,20 +49,13 @@ export class ProfileComponent {
     name: ['', [Validators.required]]
   });
 
-  user: any;
-  constructor(
-    private authService: AuthService,
-    private appService: AppService,
-    private fb: NonNullableFormBuilder,
-    private message: NzMessageService
-  ) { }
   logOut() {
     this.authService.logout()
     window.location.reload();
   }
   ngOnInit() {
-    this.isLogin = this.authService.isLoggedIn()
     const currentUser = localStorage.getItem('currentUser')
+    this.i18n.setLocale(vi_VN);
     if (currentUser) {
       this.user = JSON.parse(currentUser)
       this.validateFormRegister.patchValue({
@@ -67,43 +74,42 @@ export class ProfileComponent {
     this.isChangeInfo = true;
   }
 
-  handleOk(): void {
+  async handleOk(): Promise<void> {
     this.isConfirmLoading = true;
-    const body = {
-      "name": this.validateFormRegister.value.name,
-      "phoneNumber": this.validateFormRegister.value.phoneNumber,
-      "address": this.validateFormRegister.value.address,
-      "birthday": this.validateFormRegister.value.birthday,
-      "gender": this.validateFormRegister.value.gender
+    const body: Partial<User> = {
+      name: this.validateFormRegister.value.name,
+      phoneNumber: this.validateFormRegister.value.phoneNumber,
+      address: this.validateFormRegister.value.address,
+      birthday: this.validateFormRegister.value.birthday,
+      gender: this.validateFormRegister.value.gender
     }
-    this.appService.update(body, `/users/${this.user.id}`, {    
-      'Content-Type': 'application/json',
-      'Authorization': "Bearer " + this.token}).subscribe(res => {
-      if (res.body.code == 200) {
-        this.message.success(res.body.message)
-      } else {
-        if (res.body.error && res.body.error.message) {
-          this.message.error(res.body.error.message)
-        } else {
-          this.message.error('Đã có lỗi xảy ra vui lòng thử lại.')
-        }
+    this.appService.update<User, Partial<User>>(body, `/users/${this.user.id}`).subscribe(res => {
+      if (!res.body) {
+        return this.message.error('Đã có lỗi xảy ra vui lòng thử lại');
       }
-      setTimeout(() => {
-        this.isChangeInfo = false;
-        this.isConfirmLoading = false;
-      }, 1000);
+
+      if (res.body.code == 200) {
+        this.user = res.body.data
+        return this.message.success(res.body.message)
+      }
+
+      if (res.body && res.body.message) {
+        return this.message.error(res.body.message)
+      }
+
+      return this.message.error('Đã có lỗi xảy ra vui lòng thử lại.')
+
     }, error => {
       if (error.error && error.error.message) {
-        this.message.error(error.error.message);
-      } else {
-        this.message.error('Đã có lỗi xảy ra vui lòng thử lại');
+        return this.message.error(error.error.message);
       }
-      setTimeout(() => {
-        this.isChangeInfo = false;
-        this.isConfirmLoading = false;
-      }, 1000);
-    });
+      return this.message.error('Đã có lỗi xảy ra vui lòng thử lại');
 
+    });
+    setTimeout(() => {
+      this.isChangeInfo = false;
+      this.isConfirmLoading = false;
+    }, 1000);
   }
 
   handleCancel(): void {

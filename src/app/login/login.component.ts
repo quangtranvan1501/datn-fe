@@ -85,20 +85,26 @@ export class LoginComponent {
       if (email) {
         this.isLoading = true;
         this.authService.forgotPass(email).subscribe(response => {
-          if (response.body.code == 200) {
-            this.message.success(response.body.message)
+          if (!response.body) {
             this.isLoading = false;
             this.visible = false;
-          } else {
-            if(response.body.error && response.body.error.message){
-              this.message.error(response.body.error.message)
-            }else{
-              this.message.error('Unknown error occurred.')
-            }
-            this.isLoading = false;
+            return this.message.error('Unknown error occurred.');
           }
+          if (response.body.code == 200) {
+            this.isLoading = false;
+            this.visible = false;
+            return this.message.success(response.body.message)
+          }
+          if (response.body && response.body.message) {
+            this.isLoading = false;
+            this.visible = false;
+            return this.message.error(response.body.message)
+          }
+          return this.message.error('Unknown error occurred.')
         });
       }
+      this.isLoading = false;
+      this.visible = false;
     } else {
       Object.values(this.validateFormForgotPass.controls).forEach(control => {
         if (control.invalid) {
@@ -123,29 +129,35 @@ export class LoginComponent {
       if (userName && password) {
         this.isLoading = true;
         this.authService.login(userName, password).subscribe(response => {
+          if (!response.body) {
+            this.isLoading = false;
+            return this.message.error('Unknown error occurred.');
+          }
           if (response.body.code == 200) {
-            this.message.success(response.body.message)
             this.isLoading = false;
-            this.router.navigate(['/']);
-          } else {
-            if(response.body.message){
-              this.message.error(response.body.message)
+            if(response.body.data.user.role == 'doctor'){
+              this.router.navigate(['/doctor']);
             }else{
-              this.message.error('Unknown error occurred.')
+              this.router.navigate(['/']);
             }
+            return this.message.success(response.body.message)
+          }
+          if (response.body.message) {
             this.isLoading = false;
+            return this.message.error(response.body.message)
           }
+          return this.message.error('Unknown error occurred.')
         },
-        error => {
-          // Handle network or other call failures
-          if (error.error && error.error.message) {
-            this.message.error(error.error.message);
-          } else {
-            this.message.error('Đã có lỗi xảy ra vui lòng thử lại');
+          error => {
+            // Handle network or other call failures
+            if (error.error && error.error.message) {
+              this.isLoading = false;
+              return this.message.error(error.error.message);
+            }
+            return this.message.error('Đã có lỗi xảy ra vui lòng thử lại');
           }
-          this.isLoading = false;
-        }
-      );
+        );
+        this.isLoading = false;
       }
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
@@ -164,25 +176,27 @@ export class LoginComponent {
     if (this.validateFormRegister.valid) {
       const formData: { [key: string]: any } = Object.keys(this.validateFormRegister.controls)
         .filter(key => key !== 'confirm')
-        .reduce((acc:any, key) => {
+        .reduce((acc: any, key) => {
           acc[key] = (this.validateFormRegister.controls as { [key: string]: any })[key].value;
           return acc;
         }, {});
       this.isLoading = true;
       this.authService.register(formData).subscribe(response => {
-        console.log(response)
-        if (response.body.code == 201) {
-          this.message.success(response.body.message)
+        if (!response.body) {
           this.isLoading = false;
-        } else {
-          if (response.body.error && response.body.error.message) {
-            this.message.error(response.body.error.message);
-          } else {
-            this.message.error('Unknown error occurred.');
-          }
-          this.isLoading = false;
+          return this.message.error('Unknown error occurred.');
         }
+        if (response.body.code == 201) {
+          this.isLoading = false;
+          return this.message.success(response.body.message)
+        }
+        if (response.body && response.body.message) {
+          this.isLoading = false;
+          return this.message.error(response.body.message);
+        }
+        return this.message.error('Unknown error occurred.');
       })
+      this.isLoading = false;
     } else {
       Object.values(this.validateFormRegister.controls).forEach(control => {
         if (control.invalid) {

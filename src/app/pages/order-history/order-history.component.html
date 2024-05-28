@@ -1,0 +1,53 @@
+<nz-layout>
+    <nz-header>
+        <app-header></app-header>
+    </nz-header>
+    <nz-content>
+        <app-nav-bar routerNav="order-history"></app-nav-bar>
+        <div class="inner-content">
+            <div class="titlePage">
+                Tra cứu hóa đơn
+            </div>
+            <div class="tableService">
+                <div class="orderItem" *ngFor="let order of listOfData">
+                    <div class="orderTitle">
+                        <div class="title1">
+                            Mã hóa đơn: {{order.orderId}}
+                            <div class="orderDate">Ngày tạo hóa đơn: {{order.orderDate | date: 'dd/MM/yyyy HH:mm'}}</div>
+                        </div>
+                        <div class="orderStatus">Trạng thái: {{order.status}}</div>
+                    </div>
+                    <div class="orderService">
+                        <nz-table #basicTable [nzData]="order.orderService" [nzFrontPagination]="false" [nzShowPagination]="false">
+                            <thead>
+                              <tr>
+                                <th nzWidth="60px">STT</th>
+                                <th >Tên dịch vụ</th>
+                                <th nzWidth="100px">Số lượng</th>
+                                <th nzWidth="200px">Giá tiền</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let data of basicTable.data; let index = index">
+                                <td>{{ index + 1 }}</td>
+                                <td >{{ data.service.name }}</td>
+                                <td nzWidth="100px">{{ data.quantity }}</td>
+                                <td nzWidth="200px">{{ data.service.price | priceFormat }}</td>
+                              </tr>
+                              <tr>
+                                <td colspan="3">Giảm giá</td>
+                                <td nzWidth="200px">{{order.discount}}</td>
+                              </tr>
+                              <tr class="orderSum">
+                                <td colspan="3">Tổng tiền</td>
+                                <td nzWidth="200px">{{order.totalAmount | priceFormat }}</td>
+                              </tr>
+                            </tbody>
+                          </nz-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nz-content>
+    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+</nz-layout>

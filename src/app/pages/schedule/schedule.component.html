@@ -1,0 +1,136 @@
+<nz-layout>
+    <nz-header>
+        <app-header></app-header>
+    </nz-header>
+    <nz-content>
+        <app-nav-bar routerNav="schedule"></app-nav-bar>
+        <div class="inner-content">
+            <div class="titlePage">Đăng ký dịch vụ khám</div>
+            <nz-steps [nzCurrent]="current" (nzIndexChange)="setStep()">
+                <nz-step *ngFor="let step of this.steps; trackBy: trackById" [nzTitle]="step.title"
+                    [nzPercentage]="step.async ? step.percentage : null"></nz-step>
+            </nz-steps>
+            <div *ngIf="current === 0">
+                <div nz-row class="infoService">
+                    <div nz-col [nzSpan]="12" class="infoUser">
+                        <nz-descriptions nzTitle="Thông tin cá nhân" nzBordered>
+                            <nz-descriptions-item nzTitle="Username">{{user.username}}</nz-descriptions-item>
+                            <nz-descriptions-item nzTitle="Email" [nzSpan]="2">
+                                {{user.email}}
+                            </nz-descriptions-item>
+                            <nz-descriptions-item nzTitle="Họ và tên" [nzSpan]="2">{{user.name}}</nz-descriptions-item>
+                            <nz-descriptions-item nzTitle="Số điện thoại">{{user.phoneNumber}}</nz-descriptions-item>
+                            <nz-descriptions-item nzTitle="Giới tính">{{user.gender}}</nz-descriptions-item>
+                            <nz-descriptions-item nzTitle="Ngày sinh">{{user.birthday | date:
+                                'dd/MM/yyyy'}}</nz-descriptions-item>
+                        </nz-descriptions>
+                    </div>
+                    <div class="searchService" nz-col [nzSpan]="12">
+                        <div class="search" nz-row>
+                            <div class="searchLabel" nz-col [nzSpan]="6">Nhập mã dịch vụ</div>
+                            <div class="searchInput" nz-col [nzSpan]="16">
+                                <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+                                    <input type="text" [(ngModel)]="serviceCode" nz-input placeholder="Mã dịch vụ" />
+                                </nz-input-group>
+                                <ng-template #suffixIconButton>
+                                    <button (click)="search()" nz-button nzType="primary" nzSearch><span nz-icon
+                                            nzType="search"></span></button>
+                                </ng-template>
+                            </div>
+                        </div>
+                        <div class="tableService">
+                            <nz-table #basicTable [nzData]="service" nzBordered>
+                                <thead>
+                                    <tr>
+                                        <th>Mã dịch vụ</th>
+                                        <th [colSpan]="2">Tên dịch vụ</th>
+                                        <th>Khoa</th>
+                                        <th>Giá tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of basicTable.data">
+                                        <td>{{ data.serviceId }}</td>
+                                        <td [colSpan]="2">{{ data.name }}</td>
+                                        <td>{{ data.specialist.name }}</td>
+                                        <td>{{ data.price | priceFormat }}</td>
+                                    </tr>
+                                </tbody>
+                            </nz-table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="current === 1">
+                <div class="infoService" nz-row>
+                    <div class="infoUser" nz-col [nzSpan]="12">
+                        <nz-descriptions nzTitle="Thông tin đặt khám" nzBordered>
+                            <nz-descriptions-item [nzSpan]="4" nzTitle="Họ và Tên">{{user.name}}</nz-descriptions-item>
+                            <nz-descriptions-item [nzSpan]="4"
+                                nzTitle="Số điện thoại">{{user.phoneNumber}}</nz-descriptions-item>
+                            <nz-descriptions-item [nzSpan]="4" nzTitle="Ngày sinh">{{user.birthday | date:
+                                'dd/MM/yyyy'}}</nz-descriptions-item>
+                            <nz-descriptions-item [nzSpan]="4"
+                                nzTitle="Giới tính">{{user.gender}}</nz-descriptions-item>
+                            <nz-descriptions-item [nzSpan]="4" nzTitle="Tên dịch vụ">
+                                <div class="boildTitle">{{service[0].name}}</div>
+                            </nz-descriptions-item>
+                            <nz-descriptions-item [nzSpan]="4" nzTitle="Giá tiền">
+                                <div class="boildTitle"> {{service[0].price | priceFormat}}</div>
+                            </nz-descriptions-item>
+                        </nz-descriptions>
+                    </div>
+                    <div class="searchService" nz-col [nzSpan]="12">
+                        <div class="scheduleItem">
+                            <div class="scheduleLabel">Vui lòng chọn thời gian: </div>
+                            <nz-date-picker nzFormat="yyyy-MM-dd HH:mm:ss" [nzDisabledDate]="disabledDate" (ngModelChange)="onTimeChange($event)"
+                                [(ngModel)]="sheduleDay"
+                                [nzShowTime]="{ nzDefaultOpenValue: timeDefaultValue }"></nz-date-picker>
+                        </div>
+                        <div class="scheduleItem">
+                            <div class="scheduleLabel">Chọn bác sĩ khám (Nếu muốn): </div>
+                            <nz-select nzPlaceHolder="Chọn bác sĩ" [nzShowSearch]="true" [(ngModel)]="doctorId" (ngModelChange)="onDoctorChange($event)">
+                                <nz-option *ngFor="let doc of doctor" [nzLabel]="doc.name" [nzValue]="doc.id">
+                                </nz-option>
+                            </nz-select>
+                        </div>
+                        <div class="btn-checkDoctorShedule">
+                            <button class="btn-next" nz-button [disabled]="isDoctor" nzType="primary" (click)="checkDoctorShedule()">Kiểm tra lịch bác sỹ</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="current === 2">
+                <div class="infoShedule" nz-row>
+                    <nz-descriptions nzTitle="Thông tin đặt khám" nzBordered>
+                        <nz-descriptions-item [nzSpan]="4" nzTitle="Họ và Tên">{{user.name}}</nz-descriptions-item>
+                        <nz-descriptions-item [nzSpan]="4"
+                            nzTitle="Số điện thoại">{{user.phoneNumber}}</nz-descriptions-item>
+                        <nz-descriptions-item [nzSpan]="4" nzTitle="Ngày sinh">{{user.birthday | date:
+                            'dd/MM/yyyy'}}</nz-descriptions-item>
+                        <nz-descriptions-item [nzSpan]="4" nzTitle="Giới tính">{{ user.gender }}</nz-descriptions-item>
+                        <nz-descriptions-item [nzSpan]="4" nzTitle="Thời gian khám">{{sheduleDay | date: 'dd/MM/yyyy HH:mm'}}</nz-descriptions-item>
+                        <nz-descriptions-item [nzSpan]="4" nzTitle="Bác sĩ khám">{{getDoctorNameById(doctorId)}}</nz-descriptions-item>
+                        <nz-descriptions-item [nzSpan]="4"
+                            nzTitle="Tên dịch vụ">{{service[0].name}}</nz-descriptions-item>
+                        <nz-descriptions-item [nzSpan]="4" nzTitle="Giá tiền">{{service[0].price |
+                            priceFormat}}</nz-descriptions-item>
+                    </nz-descriptions>
+                </div>
+            </div>
+            <div class="steps-action">
+                <button nz-button nzType="default" (click)="pre()" *ngIf="current > 0">
+                    <span>Previous</span>
+                </button>
+                <button class="btn-next" nz-button nzType="primary" (click)="next()" [disabled]="isDisabled" [nzLoading]="processing" *ngIf="current < 2">
+                    <span>Next</span>
+                </button>
+                <button nz-button nzType="primary" (click)="done()" [nzLoading]="processing" *ngIf="current === 2">
+                    <span>Done</span>
+                </button>
+            </div>
+        </div>
+    </nz-content>
+    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+</nz-layout>

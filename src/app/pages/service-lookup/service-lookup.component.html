@@ -1,0 +1,61 @@
+<nz-layout>
+  <nz-header>
+    <app-header></app-header>
+  </nz-header>
+  <nz-content>
+    <app-nav-bar routerNav="service"></app-nav-bar>
+    <div class="inner-content">
+      <div class="titlePage">Tra cứu dịch vụ khám</div>
+      <div nz-row>
+        <div class="searchItem" nz-col [nzSpan]="8">
+          <div class="searchLabel" nz-col [nzSpan]="6">Nhập</div>
+          <div class="searchInput" nz-col [nzSpan]="16">
+            <input nz-input placeholder="Tên dịch vụ / Mã dịch vụ" (keyup.enter)="filterSchedule()" [(ngModel)]="serviceName" />
+          </div>
+        </div>
+        <div class="searchItem" nz-col [nzSpan]="2"></div>
+        <div class="searchItem" nz-col [nzSpan]="6">
+          <div class="searchLabel" nz-col [nzSpan]="6">Khoa</div>
+          <div class="searchInput" nz-col [nzSpan]="16">
+            <nz-select nzPlaceHolder="Chọn khoa" [(ngModel)]="specialistItem"
+              (ngModelChange)="onSpecialistChange($event)">
+              <nz-option *ngFor="let specialist of specialistList" [nzLabel]="specialist.name"
+                [nzValue]="specialist.id">
+              </nz-option>
+            </nz-select>
+          </div>
+        </div>
+        <div class="searchItem" nz-col [nzSpan]="8">
+          <button nz-button (click)="filterSchedule()">Tìm kiếm</button>
+        </div>
+      </div>
+      <nz-table #basicTable [nzData]="filteredService" nzBordered [nzPageSize]="pageSize" [nzPageIndex]="pageIndex"
+        [nzTotal]="total" nzShowSizeChanger   [nzScroll]="{ y: '40vh' }">
+        <thead>
+          <tr>
+            <th nzWidth="60px">STT</th>
+            <th>Mã dịch vụ</th>
+            <th [colSpan]="2">Tên dịch vụ</th>
+            <th>Khoa</th>
+            <th>Giá tiền</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of basicTable.data ; let index = index">
+            <td>{{ pageSize*(pageIndex - 1 ) + index + 1 }}</td>
+            <td>{{ data.serviceId }}</td>
+            <td [colSpan]="2">{{ data.name }}</td>
+            <td>{{ data.specialist.name }}</td>
+            <td>{{ data.price | priceFormat }}</td>
+            <td>
+              <a>Delete</a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+      <nz-pagination [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzTotal]="total" (nzPageIndexChange)="demo($event)"></nz-pagination> 
+    </div>
+  </nz-content>
+  <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+</nz-layout>

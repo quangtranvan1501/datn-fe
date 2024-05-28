@@ -3,6 +3,7 @@ import { environment } from './environments/environments';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { createRequestOption } from './util/util';
+import { BodyType } from '../@types';
 
 @Injectable({
   providedIn: 'root'
@@ -18,131 +19,104 @@ export class AppService {
     this.resourceUrl = url;
   }
 
-  create(entity: any, requestUrl: any): Observable<HttpResponse<any>> {
-    return this.http.post<any>(
-      this.resourceUrl + requestUrl,
-      entity,
-      { observe: 'response' }
-    );
+  create<T, V>(body: V, url: string, headers?: HttpHeaders): Observable<HttpResponse<BodyType<T>>> {
+    return this.http.post<BodyType<T>>(this.resourceUrl + url, body, {
+      headers: headers,
+      observe: 'response',
+    });
   }
 
-  update(entity: any, requestUrl: any, headers:any): Observable<HttpResponse<any>> {
-    return this.http.patch<any>(
-      this.resourceUrl + requestUrl,
-      entity,
-      {
-        headers: headers,
-        observe: 'response',
-      }
-    );
+  update<T, V>(body: V, url: string, headers?: HttpHeaders): Observable<HttpResponse<BodyType<T>>> {
+    return this.http.patch<BodyType<T>>(this.resourceUrl + url, body, {
+      headers: headers,
+      observe: 'response',
+    });
   }
 
-  find(id: number, requestUrl: any): Observable<HttpResponse<any>> {
-    return this.http.get<any>(
-      `${this.resourceUrl + requestUrl}/${id}`,
-      { observe: 'response' }
-    );
+  find<T>(url: string, headers?: HttpHeaders): Observable<HttpResponse<BodyType<T>>> {
+    return this.http.get<BodyType<T>>(this.resourceUrl + url, {
+      headers: headers,
+      observe: 'response',
+    });
   }
 
-  getById(id: number, requestUrl: any): Observable<HttpResponse<any>> {
-    return this.http.get<any>(
-      this.resourceUrl + requestUrl + '?id=' + id,
-      { observe: 'response' }
-    );
+  getById<T>(id: string, url: string, headers?: HttpHeaders): Observable<HttpResponse<BodyType<T>>> {
+    return this.http.get<BodyType<T>>(this.resourceUrl + url + '/' + id, {
+      headers: headers,
+      observe: 'response',
+    });
   }
 
-  query(req: any, requestUrl: any): Observable<HttpResponse<any>> {
+  query<T>(req?: any, url?: string, headers?: HttpHeaders): Observable<HttpResponse<BodyType<T>>> {
     const options = createRequestOption(req);
-    return this.http.get<any>(
-      this.resourceUrl + requestUrl,
-      { params: options, observe: 'response' }
-    );
-  }
-
-  delete(id: number, requestUrl: any): Observable<HttpResponse<{}>> {
-    return this.http.delete(
-      `${this.resourceUrl + requestUrl + '?id='}${id}`,
-      { observe: 'response' }
-    );
-  }
-
-  deleteOption(
-    req: any,
-    requestUrl: any,
-    option: any
-  ): Observable<HttpResponse<any>> {
-    const options = createRequestOption(req);
-    return this.http.delete<any>(this.resourceUrl + requestUrl + option, {
+    return this.http.get<BodyType<T>>(this.resourceUrl + url, {
       params: options,
-      observe: 'response',
-    });
-  }
-  postOption(
-    entity: any,
-    requestUrl: any,
-    option: any
-  ): Observable<HttpResponse<any>> {
-    return this.http.post<any>(this.resourceUrl + requestUrl + option, entity, {
+      headers: headers,
       observe: 'response',
     });
   }
 
-  postByOption(requestUrl: any, option: any): Observable<HttpResponse<any>> {
-    return this.http.post<any>(this.resourceUrl + requestUrl + option, {
+  delete<T>(url: string, headers?: HttpHeaders): Observable<HttpResponse<BodyType<T>>> {
+    return this.http.delete<BodyType<T>>(this.resourceUrl + url, {
+      headers: headers,
       observe: 'response',
     });
   }
 
-  getOption(
-    req: any,
-    requestUrl: any,
-    option: any
-  ): Observable<HttpResponse<any>> {
-    const options = createRequestOption(req);
-    return this.http.get<any>(this.resourceUrl + requestUrl + option, {
-      params: options,
+  deleteOption<T>(id:string, url: string, headers?: HttpHeaders): Observable<HttpResponse<BodyType<T>>> {
+    return this.http.delete<BodyType<T>>(this.resourceUrl + url + '/' + id, {
+      headers: headers,
       observe: 'response',
     });
   }
 
-  getByOption(requestUrl: any, option: any): Observable<HttpResponse<any>> {
-    return this.http.get<any>(this.resourceUrl + requestUrl + option, {
+  postOption<T, V>(body: V, url: string, headers?: HttpHeaders): Observable<HttpResponse<BodyType<T>>> {
+    return this.http.post<BodyType<T>>(this.resourceUrl + url, body, {
+      headers: headers,
       observe: 'response',
     });
   }
 
-  putOption(
-    entity: any,
-    requestUrl: any,
-    option: any
-  ): Observable<HttpResponse<any>> {
-    return this.http.put<any>(this.resourceUrl + requestUrl + option, entity, {
+  postByOption<T, V>(body: V, url: string, headers?: HttpHeaders): Observable<HttpResponse<BodyType<T>>> {
+    return this.http.post<BodyType<T>>(this.resourceUrl + url, body, {
+      headers: headers,
       observe: 'response',
     });
   }
 
-  uploadFile(
-    fileToUpload: File,
-    requestUrl: any,
-    option: any
-  ): Observable<HttpResponse<any>> {
-    const formData: FormData = new FormData();
-    formData.append('file', fileToUpload);
-    return this.http.post(this.resourceUrl + requestUrl + option, formData, {
+  getOption<T>(params: HttpParams, url: string, headers?: HttpHeaders): Observable<HttpResponse<BodyType<T>>> {
+    return this.http.get<BodyType<T>>(this.resourceUrl + url, {
+      headers: headers,
+      params: params,
       observe: 'response',
     });
   }
-  get(requestUrl: any, option: any): Observable<HttpResponse<any>> {
-    return this.http.get<any>(this.resourceUrl + requestUrl + option, {
+
+  getByOption<T>(params: HttpParams, url: string, headers?: HttpHeaders): Observable<HttpResponse<BodyType<T>>> {
+    return this.http.get<BodyType<T>>(this.resourceUrl + url, {
+      headers: headers,
+      params: params,
       observe: 'response',
     });
   }
-  post(
-    entity: any,
-    requestUrl: any,
-    option: any
-  ): Observable<HttpResponse<any>> {
-    return this.http.post<any>(this.resourceUrl + requestUrl + option, entity, {
+
+  putOption<T, V>(body: V, url: string, headers?: HttpHeaders): Observable<HttpResponse<BodyType<T>>> {
+    return this.http.put<BodyType<T>>(this.resourceUrl + url, body, {
+      headers: headers,
+      observe: 'response',
+    });
+  }
+
+  get<T>(params: HttpParams, url: string, headers?: HttpHeaders): Observable<HttpResponse<BodyType<T>>> {
+    return this.http.get<BodyType<T>>(this.resourceUrl + url, {
+      headers: headers,
+      params: params,
+      observe: 'response',
+    });
+  }
+  post<T, V>(body: V, url: string, headers?: HttpHeaders): Observable<HttpResponse<BodyType<T>>> {
+    return this.http.post<BodyType<T>>(this.resourceUrl + url, body, {
+      headers: headers,
       observe: 'response',
     });
   }

@@ -1,0 +1,54 @@
+<nz-layout>
+    <nz-header>
+        <app-doctor-header></app-doctor-header>
+    </nz-header>
+    <nz-content nz-row>
+        <app-dortor-nav-bar routerNav="sheduleList" isSub="sub1" class="navBar" nz-col [nzSpan]="4"></app-dortor-nav-bar>
+        <div nz-col [nzSpan]="1"></div>
+        <div nz-col [nzSpan]="19" class="inner-content">
+            <div class="titlePage">
+                Danh sách lịch khám
+            </div>
+            <div class="searchShedule" nz-row>
+                <div nz-col nzSpan="12" class="timeSearch">
+                    <div class="searchItem">Thời gian khám: </div>
+                    <nz-range-picker [(ngModel)]="daySearch" (ngModelChange)="onChange($event)"></nz-range-picker>
+                </div>
+                <div nz-col nzSpan="12" class="timeSearch">
+                    <div class="searchItem">Tìm kiếm: </div>
+                    <div style="width: 70%;">
+                        <nz-input-group class="inputSearch" nzSearch [nzAddOnAfter]="suffixIconButton">
+                            <input type="text" [(ngModel)]="inputSearch" (keyup.enter)="filterSchedule()" nz-input placeholder="Nhập mã bệnh án/tên bệnh nhân" />
+                        </nz-input-group>
+                        <ng-template #suffixIconButton>
+                            <button nz-button nzType="primary" (click)="filterSchedule()" nzSearch><span nz-icon nzType="search"></span></button>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <nz-table #dataTable [nzData]="filteredSchedule">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã lịch khám</th>
+                            <th>Tên bệnh nhân</th>
+                            <th>Tên dịch vụ</th>
+                            <th>Ngày khám</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of dataTable.data ; let index = index">
+                            <td>{{ index + 1 }}</td>
+                            <td>{{data.examinationScheduleId}}</td>
+                            <td>{{ data.patient.name }}</td>
+                            <td >{{ data.service.name }}</td>
+                            <td>{{data.day | date: 'dd/MM/yyyy HH:mm'}}</td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+            </div>
+        </div>
+    </nz-content>
+    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+</nz-layout>

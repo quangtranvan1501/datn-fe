@@ -1,0 +1,100 @@
+<nz-layout>
+    <nz-header>
+        <app-doctor-header></app-doctor-header>
+    </nz-header>
+    <nz-content nz-row>
+        <app-dortor-nav-bar routerNav="createRecord" isSub="sub2" class="navBar" nz-col [nzSpan]="4"></app-dortor-nav-bar>
+        <div nz-col [nzSpan]="1"></div>
+        <div nz-col [nzSpan]="19" class="inner-content">
+            <div class="titlePage">
+                Tạo mới bệnh án
+            </div>
+            <div nz-row>
+                <div class="infoPatient" nz-col nzSpan="12">
+                    <div class="search-box">
+                        <div class="searchTitle">Nhập mã bệnh nhân: </div>
+                        <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+                            <input type="text" [(ngModel)]="patientId" nz-input placeholder="Mã bệnh nhân" />
+                        </nz-input-group>
+                        <ng-template #suffixIconButton>
+                            <button nz-button nzType="primary" nzSearch (click)="getPatient()"><span nz-icon
+                                    nzType="search"></span></button>
+                        </ng-template>
+                    </div>
+                    <nz-descriptions nzBordered>
+                        <nz-descriptions-item nzTitle="Họ và tên" [nzSpan]="3">{{user.name}}</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Giới tính" [nzSpan]="1">{{user.gender}}</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Ngày sinh" [nzSpan]="2">{{user.birthday | date:
+                            'dd/MM/yyyy'}}</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Địa chỉ" [nzSpan]="3">{{user.address}}</nz-descriptions-item>
+                    </nz-descriptions>
+                </div>
+                <div class="serviceInfo" nz-col nzSpan="12">
+                    <div class="search-box">
+                        <div class="searchTitle">Nhập mã dịch vụ: </div>
+                        <nz-input-group nzSearch [nzAddOnAfter]="btnService">
+                            <input type="text" [(ngModel)]="serviceId" nz-input placeholder="Mã dịch vụ" />
+                        </nz-input-group>
+                        <ng-template #btnService>
+                            <button nz-button nzType="primary" nzSearch (click)="getService()"><span nz-icon
+                                    nzType="search"></span></button>
+                        </ng-template>
+                    </div>
+                    <nz-descriptions nzBordered>
+                        <nz-descriptions-item nzTitle="Mã dịch vụ"
+                            [nzSpan]="3">{{service.serviceId}}</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Tên dịch vụ" [nzSpan]="3">{{service.name}}</nz-descriptions-item>
+                        <nz-descriptions-item nzTitle="Chuyên khoa"
+                            [nzSpan]="3">{{service.specialist.name}}</nz-descriptions-item>
+                    </nz-descriptions>
+                </div>
+                <div class="recordForm" nz-col nzSpan="24">
+                    <form nz-form nz-row [formGroup]="recordForm" nzJustify="end" (ngSubmit)="submitForm()">
+                        <div nz-col nzSpan="12">
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="6" nzRequired>Chuẩn đoán</nz-form-label>
+                                <nz-form-control [nzSpan]="14" nzErrorTip="Chuẩn đoán không được để trống">
+                                    <textarea nz-input formControlName="diagnose"></textarea>
+                                </nz-form-control>
+                            </nz-form-item>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="6" nzRequired>Triệu chứng</nz-form-label>
+                                <nz-form-control [nzSpan]="14" nzErrorTip="Triệu chứng không được để trống">
+                                    <textarea nz-input formControlName="symptom"></textarea>
+                                </nz-form-control>
+                            </nz-form-item>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="6" nzRequired>Kết luận</nz-form-label>
+                                <nz-form-control [nzSpan]="14" nzErrorTip="Kết luận không được để trống">
+                                    <textarea nz-input formControlName="testResults"></textarea>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div nz-col nzSpan="12">
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="6">Chỉ định</nz-form-label>
+                                <nz-form-control [nzSpan]="14">
+                                    <textarea nz-input formControlName="prescription"></textarea>
+                                </nz-form-control>
+                            </nz-form-item>
+                            <nz-form-item>
+                                <nz-form-label [nzSpan]="6">Ghi chú</nz-form-label>
+                                <nz-form-control [nzSpan]="14">
+                                    <textarea nz-input formControlName="note"></textarea>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div nz-col nzSpan="24" class="btn-create">
+                            <nz-form-item >
+                                <nz-form-control>
+                                    <button nz-button nzType="primary" type="submit">Tạo mới</button>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nz-content>
+    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+</nz-layout>

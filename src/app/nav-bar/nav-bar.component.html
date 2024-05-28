@@ -1,0 +1,44 @@
+<ul nz-menu nzMode="horizontal" nz-row nzJustify="space-between">
+    <li nz-col [nzSpan]="3" class="navItem" nz-menu-item [nzSelected]="selectedNavItem === 'home'" routerLink="/">
+        <span nz-icon nzType="home" nzTheme="fill" style="color: rgb(8, 84, 44);"></span>
+        <div class="itemTitle">
+            Trang chủ
+        </div>
+    </li>
+    <li nz-col [nzSpan]="3" class="navItem" nz-menu-item [nzSelected]="selectedNavItem === 'schedule'" routerLink="/schedule">
+        <span nz-icon nzType="schedule" nzTheme="fill" style="color: rgb(197, 240, 25);"></span>
+        <div class="itemTitle">
+            Đặt lịch khám
+        </div>
+    </li>
+    <li nz-col [nzSpan]="3" class="navItem" nz-menu-item [nzSelected]="selectedNavItem === 'service'" routerLink="/service-lookup">
+        <span nz-icon nzType="bars" nzTheme="outline" style="color: rgb(244, 27, 27);"></span>
+        <div class="itemTitle">
+            Dịch vụ
+        </div >
+    </li>
+    <li nz-col [nzSpan]="3" class="navItem" nz-menu-item [nzSelected]="selectedNavItem === 'chat'">
+        <span nz-icon nzType="customer-service" nzTheme="fill" style="color: rgb(8, 61, 84);"></span>
+        <div class="itemTitle">
+            Tư vấn viên
+        </div>
+    </li>
+    <li nz-col [nzSpan]="3" class="navItem" nz-menu-item [nzSelected]="selectedNavItem === 'chatBot'">
+        <span nz-icon nzType="robot" nzTheme="fill" style="color: rgb(73, 8, 84);"></span>
+        <div class="itemTitle">
+            Chatbot
+        </div>
+    </li>
+    <li *ngIf="isLogin" nz-col [nzSpan]="3" class="navItem" nz-menu-item [nzSelected]="selectedNavItem === 'shedule-history'" routerLink="/shedule-history">
+        <span nz-icon nzType="medicine-box" nzTheme="outline" style="color: rgb(8, 8, 84);"></span>
+        <div class="itemTitle">
+            Tra cứu lịch khám
+        </div>
+    </li>
+    <li *ngIf="isLogin" nz-col [nzSpan]="3" class="navItem" nz-menu-item [nzSelected]="selectedNavItem === 'order-history'" routerLink="/order-history">
+        <span nz-icon nzType="history" nzTheme="outline" style="color: rgb(54, 227, 27);"></span>
+        <div class="itemTitle">
+            Tra cứu hóa đơn
+        </div>
+    </li>
+</ul>

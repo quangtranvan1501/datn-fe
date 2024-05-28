@@ -1,0 +1,107 @@
+nz-header {
+    background: #fff;
+    box-shadow: 2px 2px 2px rgb(205, 205, 205);
+}
+
+nz-breadcrumb {
+    margin: 16px 0;
+}
+
+nz-content {
+    padding: 0 50px;
+    margin-top: 10px;
+    min-height: 100vh;
+}
+
+nz-footer {
+    text-align: center;
+}
+
+/* button{
+    border-radius: 4px;
+    background-color: rgb(8, 84, 44);
+    border: none;
+    font-size: 18px;
+    color: white;
+} */
+.inner-content {
+    background: #fff;
+    padding: 24px;
+    min-height: 280px;
+    margin-top: 50px;
+    border-radius: 4px;
+    box-shadow: 3px 3px 4px rgb(205, 205, 205);
+}
+
+.titlePage {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(8, 84, 44);
+    margin-bottom: 20px;
+}
+
+.steps-action {
+    margin-top: 36px;
+}
+
+button {
+    margin-right: 8px;
+}
+.infoUser{
+    padding: 16px;
+    border-right: 2px solid rgb(8, 84, 44);
+}
+.searchService{
+    padding: 16px;
+}
+.searchLabel{
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+.searchInput{
+    margin-bottom: 16px;
+}
+::ng-deep .ant-descriptions-item-content {
+    font-weight: 700;
+}
+.boildTitle{
+    font-weight: 700 !important;
+}
+.scheduleItem{
+    padding: 16px;
+    border-bottom: 2px solid rgb(8, 84, 44);
+}
+.scheduleLabel{
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 18px;
+}
+.btn-checkDoctorShedule{
+    margin-top: 18px;
+    text-align: right;
+}
+.infoService{
+    border: 2px solid rgb(8, 84, 44);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 18px;
+
+}
+.infoShedule {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid rgb(8, 84, 44);
+    border-radius: 8px;
+    margin-top: 18px;
+}
+.btn-next{
+    background: rgb(8, 84, 44);
+    color: #fff;
+}
+.btn-next:disabled {
+    background: rgb(150, 150, 150); 
+    color: #ccc; 
+    cursor: not-allowed; 
+}

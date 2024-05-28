@@ -1,0 +1,71 @@
+
+nz-header {
+    background: #fff;
+    box-shadow: 2px 2px 2px rgb(205, 205, 205);
+}
+nz-breadcrumb {
+    margin: 16px 0;
+}
+
+nz-content {
+    padding: 0 50px;
+    margin-top: 10px;
+    min-height: 100vh;
+}
+
+nz-footer {
+    text-align: center;
+}
+th{
+    text-align: left !important;
+}
+.inner-content {
+    background: #fff;
+    padding: 24px;
+    min-height: 280px;
+    margin-top: 50px;
+    border-radius: 4px;
+    box-shadow: 3px 3px 4px rgb(205, 205, 205);
+}
+.titlePage {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(8, 84, 44);
+    margin-bottom: 20px;
+}
+.orderItem{
+    border-radius: 8px;
+    box-shadow: 2px 2px 4px rgb(205, 205, 205);
+    padding: 12px;
+    margin-bottom: 20px;
+}
+.orderTitle{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #333;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+}
+.title1{
+    font-size: 18px;
+    font-weight: 500;
+}
+.orderDate{
+    color: gray;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 400;
+}
+.orderStatus{
+    font-weight: 700;
+    font-size: 18px;
+    font-style: italic;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.orderSum{
+    font-size: large;
+    font-weight: 700;
+    font-style: italic;
+}

@@ -21,6 +21,20 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { HeaderComponent } from 'src/app/header/header.component';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NZ_I18N, en_US, vi_VN } from 'ng-zorro-antd/i18n';
+import { ServiceLookupComponent } from '../service-lookup/service-lookup.component';
+import { NavBarComponent } from 'src/app/nav-bar/nav-bar.component';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { PriceFormatPipe } from 'src/app/@types/price-format.pipe';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { ScheduleComponent } from '../schedule/schedule.component';
+import { NzStepsModule } from 'ng-zorro-antd/steps';
+import { OrderHistoryComponent } from '../order-history/order-history.component';
+import { SheduleHistoryComponent } from '../shedule-history/shedule-history.component';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 @NgModule({
   imports: [
     WelcomeRoutingModule,
@@ -41,13 +55,29 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     NzCheckboxModule,
     NzDatePickerModule,
     NzRadioModule,
-    NzMessageModule
-
+    NzMessageModule,
+    NzFormModule,
+    NzTableModule,
+    NzSelectModule,
+    NzStepsModule,
+    NzPaginationModule
   ],
   declarations: [
     WelcomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    HeaderComponent,
+    NavBarComponent,
+    ChangePasswordComponent,
+    ServiceLookupComponent,
+    PriceFormatPipe,
+    ScheduleComponent,
+    OrderHistoryComponent,
+    SheduleHistoryComponent
   ],
-  exports: [WelcomeComponent]
+  exports: [WelcomeComponent, NavBarComponent],
+  providers: [
+    { provide: NZ_I18N, useValue: vi_VN,
+     }
+  ],
 })
 export class WelcomeModule { }

@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { Observable, catchError, map, tap, throwError } from 'rxjs';
 import jwt_decode from 'jwt-decode';
 import {  Router } from '@angular/router';
+import { User } from '../@types';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +14,11 @@ export class AuthService {
 
   private loginUrl = environment.apiUrl; // Thay đổi thành URL của API login
   private loggedIn = false;
-
   constructor(
     private http: HttpClient,
     private appService: AppService,
-    private router: Router
+    private router: Router,
+
   ) { }
   getToken(): string | null {
     let token = localStorage.getItem('accesstoken');
@@ -27,13 +28,17 @@ export class AuthService {
     return token;
   }
   login(email: string, password: string) {
-    return this.appService.postOption({ email, password }, '/auth/login' , '')
+    return this.appService.postOption<any, any>({ email, password }, '/auth/login')
       .pipe(
         tap(response => {
+          if (!response.body) {
+            return this.router.navigate(['/login']);
+          }
           localStorage.setItem('currentUser', JSON.stringify(response.body.data.user));
           localStorage.setItem('accesstoken', JSON.stringify(response.body.data.tokens.access.token));
           localStorage.setItem('expirestoken', JSON.stringify(response.body.data.tokens.access.expires));
           this.loggedIn = true;
+          return response; // Add this line to return the response
         }),
         catchError(this.handleError)
       );
@@ -66,7 +71,7 @@ export class AuthService {
   }
 
   forgotPass(email:string ){
-    return this.appService.postOption( { email } , '/auth/forgot-password' , '')
+    return this.appService.postOption<any, any>({ email }, '/auth/forgot-password')
       .pipe(
         map(response => {
           return response;
@@ -74,6 +79,26 @@ export class AuthService {
       );
   }
   register(data: any) {
-    return this.appService.postOption(data, '/auth/register' , '')
+    return this.appService.postOption<User, Partial<User>>(data, '/auth/register');
+  }
+
+  changePassword(data: any) {
+      return this.appService.post<any, any>(data, '/auth/reset-password').pipe(
+        tap(response => {
+          const user = response.body?.data?.user;
+          const tokens = response.body?.data?.tokens;
+          if (user && tokens) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            localStorage.setItem('accesstoken', tokens.access.token);
+            localStorage.setItem('expirestoken', tokens.access.expires);
+            this.loggedIn = true;
+          }
+        }),
+        catchError(this.handleError)
+      );
+  }
+
+  getAuthorizationToken() {
+    return 'Bearer ' + this.getToken();
   }
 }

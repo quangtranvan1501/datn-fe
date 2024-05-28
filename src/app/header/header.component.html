@@ -1,0 +1,43 @@
+<div nz-row nzJustify="space-between" class="header-wapper">
+    <div class="logo" nz-col nzSpan="4" nzXs="6" nzSm="4" nzMd="4">
+        <img src='assets/images/logo.png' alt="logo" />
+    </div>
+    <div class="search" nz-col nzSpan="14" nzXs="4" nzSm="10" nzMd="14">
+        <nz-input-group class="inputSearch" nzSearch [nzAddOnAfter]="suffixIconButton">
+            <input type="text" nz-input placeholder="input search text" />
+        </nz-input-group>
+        <ng-template #suffixIconButton>
+            <button nz-button nzType="primary" nzSearch><span nz-icon nzType="search"></span></button>
+        </ng-template>
+    </div>
+    <div nz-col class="info" nzSpan="6" nzXs="14" nzSm="10" nzMd="6">
+        <ng-container *ngIf="!isLogin; else infoUser">
+            <button routerLink="/login" nzSize="default" nz-button>Đăng nhập</button>
+        </ng-container>
+        <ng-template #infoUser>
+            <div class="userName">Hi, {{user.name}}</div>
+            <nz-button-group>
+                <nz-avatar class="avatar" nzIcon="user" style="background-color:#87d068;" nz-dropdown [nzDropdownMenu]="infoNemu"></nz-avatar>
+            </nz-button-group>
+            <nz-dropdown-menu #infoNemu="nzDropdownMenu">
+                <ul nz-menu>
+                    <li routerLink="/" nz-menu-item>
+                        <span nz-icon nzType="home" nzTheme="outline"></span>
+                        Trang chủ
+                    </li>
+                    <li routerLink="/profile" nz-menu-item>
+                        <span nz-icon nzType="user" nzTheme="outline"></span>
+                        Thông tin cá nhân
+                    </li>
+                    <li routerLink="/change-password" nz-menu-item>
+                        <span nz-icon nzType="key" nzTheme="outline"></span>
+                        Đổi mật khẩu
+                    <li (click)="logOut()" nz-menu-item>
+                        <span nz-icon nzType="logout" nzTheme="outline"></span>
+                        Đăng xuất
+                    </li>
+                </ul>
+            </nz-dropdown-menu>
+        </ng-template>
+    </div>
+</div>

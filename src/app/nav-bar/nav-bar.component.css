@@ -1,0 +1,38 @@
+[nz-menu] {
+    line-height: 64px;
+}
+.ant-col-14{
+    margin-top: 15px;
+}
+.navBar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px rgba(205, 205, 205, 0.6);
+}
+.navItem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.navItem div{
+    margin-top: -28px;
+    margin-bottom: -12px;
+}
+::ng-deep .navItem .ant-menu-title-content svg{
+    font-size: 28px;
+}
+::ng-deep .navItem .ant-menu-title-content{
+    text-align: center;
+}
+@media (max-width: 500px) {
+    .navItem span {
+      font-size: 12px;
+    }
+    .itemTitle{
+        display: none;
+    }
+  }

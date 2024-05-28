@@ -1,0 +1,21 @@
+<ul nz-menu nzMode="inline">
+    <li nz-submenu nzTitle="Quản lý lịch trình làm việc" nzIcon="calendar" [nzOpen]="isOpen === 'sub1'">
+      <ul>
+        <li nz-menu-item [nzSelected]="selectedNavItem === 'dortorShedule'" routerLink="/doctor">Dashboard</li>
+        <li nz-menu-item [nzSelected]="selectedNavItem === 'sheduleList'" routerLink="/doctor/shedule-list">Danh sách đặt khám</li>
+        <li nz-menu-item [nzSelected]="selectedNavItem === 'sheduleConfig'" routerLink="/doctor/config-shedule" >Cấu hình lịch làm việc</li>
+      </ul>
+    </li>
+    <li nz-submenu nzTitle="Quản lý bệnh án" nzIcon="medicine-box" [nzOpen]="isOpen === 'sub2'">
+        <ul>
+            <li nz-menu-item [nzSelected]="selectedNavItem === 'medicalRecord'" routerLink="/doctor/medical-record" >Danh sách bệnh án</li>
+            <li nz-menu-item [nzSelected]="selectedNavItem === 'createRecord'" routerLink="/doctor/create-record">Tạo mới bệnh án</li>
+        </ul>
+    </li>
+    <li nz-submenu nzTitle="Quản lý thông tin cá nhân" nzIcon="user" [nzOpen]="isOpen === 'sub3'">
+        <ul>
+            <li nz-menu-item [nzSelected]="selectedNavItem === 'profile'" routerLink="/doctor/profile">Thông tin cá nhân</li>
+            <li nz-menu-item [nzSelected]="selectedNavItem === 'changePassword'" routerLink="/doctor/change-password">Đổi mật khẩu</li>
+        </ul>
+    </li>
+  </ul>

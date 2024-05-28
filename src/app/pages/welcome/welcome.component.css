@@ -1,36 +1,9 @@
-.logo {
-    background: rgba(255, 255, 255, 0.2);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.logo img {
-    width: 100%;
-    padding: 8px 4px;
-}
-.info{
-    display: flex;
-    justify-content: center;
-    align-items: center
-}
-.info button {
-    margin-top: 15px;
-    box-shadow: 2px 2px 2px grey;
-}
-.userName{
-    color: #333;
-    font-size: 16px;
-    font-weight: 600;
-    padding-right: 8px
-}
-[nz-menu] {
-    line-height: 64px;
-}
+
 nz-header {
     background: #fff;
     box-shadow: 2px 2px 2px rgb(205, 205, 205);
+    display: flex;
+    align-items: center;
 }
 nz-breadcrumb {
     margin: 16px 0;
@@ -39,13 +12,11 @@ nz-breadcrumb {
 nz-content {
     padding: 0 50px;
     margin-top: 10px;
+    min-height: 100vh;
 }
 
 nz-footer {
     text-align: center;
-}
-.ant-col-14{
-    margin-top: 15px;
 }
 button{
     border-radius: 4px;
@@ -54,44 +25,9 @@ button{
     font-size: 18px;
     color: white;
 }
-.search{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.inputSearch{
-    width: 80%;
-}
 .inner-content {
     background: #fff;
     padding: 24px;
     min-height: 280px;
 }
-.navBar{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 18px;
-    border-radius: 4px;
-    box-shadow: 2px 2px 4px rgba(205, 205, 205, 0.6);
-}
-.navItem{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-.navItem div{
-    margin-top: -28px;
-    margin-bottom: -12px;
-}
-.avatar{
-    box-shadow: 2px 2px 4px rgba(209, 209, 209, 0.5);
 
-}
-::ng-deep .navItem .ant-menu-title-content svg{
-    font-size: 28px;
-}
-::ng-deep .navItem .ant-menu-title-content{
-    text-align: center;
-}

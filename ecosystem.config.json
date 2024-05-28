@@ -2,8 +2,8 @@
     "apps": [
       {
         "name": "angular-app",
-        "script": "npm",
-        "args": "start",
+        "script": "node_modules/@angular/cli/bin/ng.js",
+        "args": "serve",
         "instances": 1,
         "autorestart": true,
         "watch": false,
@@ -14,3 +14,4 @@
       }
     ]
   }
+  

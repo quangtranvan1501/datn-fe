@@ -33,7 +33,9 @@
               "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "serviceWorker": true,
+            "ngswConfigPath": "ngsw-config.json"
           },
           "configurations": {
             "production": {
@@ -49,7 +51,13 @@
                   "maximumError": "5mb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "src/app/service/environments/environments.ts",
+                  "with": "src/app/service/environments/environments.prod.ts"
+                }
+              ]
             },
             "development": {
               "buildOptimizer": false,
@@ -57,7 +65,13 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/app/service/environments/environments.ts",
+                  "with": "src/app/service/environments/environments.dev.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"

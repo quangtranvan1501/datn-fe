@@ -23,6 +23,13 @@ export class DoctorProfileComponent {
   isChangeInfo: boolean = false
   isConfirmLoading = false;
   user: any;
+  specialistList: Specialist[] = [
+    {
+      specialistId: '1',
+      name: 'Tất cả',
+      id: '1',
+    }  
+  ];
 
   validateFormRegister: FormGroup<{
     username: FormControl<string>;

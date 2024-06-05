@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Order } from 'src/app/@types';
 import { AppService } from 'src/app/service/app.service';
@@ -19,7 +20,8 @@ export class OrderHistoryComponent implements OnInit{
     if(currentUser){
       this.user = JSON.parse(currentUser)
     }
-    this.appService.getById<Order>(this.user.id ,'/orders/user').subscribe(response => {
+    const req: HttpParams = new HttpParams().set('page', '0').set('size', '10').set('sortBy', 'orderDate:desc');
+    this.appService.get<Order>( req,`/orders/user/${this.user.id}`).subscribe(response => {
       if (!response.body) {
         return;
       }

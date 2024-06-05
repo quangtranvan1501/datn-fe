@@ -79,7 +79,6 @@ export class ScheduleComponent implements OnInit, OnChanges {
   }
 
   disabledDate = (current: Date): boolean =>
-    // Can not select days before today and today
     differenceInCalendarDays(current, this.today) < 0;
 
   pre(): void {

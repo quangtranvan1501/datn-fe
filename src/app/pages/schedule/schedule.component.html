@@ -83,7 +83,7 @@
                     <div class="searchService" nz-col [nzSpan]="12">
                         <div class="scheduleItem">
                             <div class="scheduleLabel">Vui lòng chọn thời gian: </div>
-                            <nz-date-picker nzFormat="yyyy-MM-dd HH:mm:ss" [nzDisabledDate]="disabledDate" (ngModelChange)="onTimeChange($event)"
+                            <nz-date-picker nzFormat="yyyy-MM-dd HH:mm" [nzDisabledDate]="disabledDate" (ngModelChange)="onTimeChange($event)"
                                 [(ngModel)]="sheduleDay"
                                 [nzShowTime]="{ nzDefaultOpenValue: timeDefaultValue }"></nz-date-picker>
                         </div>

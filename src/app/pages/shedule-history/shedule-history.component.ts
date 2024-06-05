@@ -61,7 +61,7 @@ export class SheduleHistoryComponent implements OnInit {
       this.user = JSON.parse(currentUser)
     }
 
-    const req: HttpParams = new HttpParams().set('page', '0').set('size', '10').set('sort', 'day,asc');
+    const req: HttpParams = new HttpParams().set('page', '0').set('size', '10').set('sortBy', 'day:desc');
     this.appService.get<any>(req ,`/examinationSchedules/user/${this.user.id}`).subscribe(response => {
       if (!response.body) {
         return;

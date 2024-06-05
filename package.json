@@ -4,7 +4,6 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "startPM2": "pm2 start ecosystem.config.json --no-daemon",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -18,13 +17,14 @@
     "@angular/forms": "^16.2.0",
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
+    "@angular/pwa": "^18.0.2",
     "@angular/router": "^16.2.0",
+    "@angular/service-worker": "^16.2.0",
     "jwt-decode": "^3.1.2",
     "ng-zorro-antd": "^16.2.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.13.0",
-    "pm2": "^5.1.0"
+    "zone.js": "~0.13.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.2.13",

@@ -8,6 +8,8 @@ import { ServiceLookupComponent } from './pages/service-lookup/service-lookup.co
 import { ScheduleComponent } from './pages/schedule/schedule.component';
 import { OrderHistoryComponent } from './pages/order-history/order-history.component';
 import { SheduleHistoryComponent } from './pages/shedule-history/shedule-history.component';
+import { RecordHistoryComponent } from './pages/record-history/record-history.component';
+import { MessageComponent } from './pages/message/message.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/welcome' },
@@ -19,6 +21,8 @@ const routes: Routes = [
   { path: 'schedule', component: ScheduleComponent, canActivate: [authGuard]},
   { path: 'order-history', component: OrderHistoryComponent, canActivate: [authGuard]},
   { path: 'shedule-history', component: SheduleHistoryComponent, canActivate: [authGuard]},
+  { path: 'record-history', component: RecordHistoryComponent, canActivate: [authGuard]},
+  { path: 'message', component: MessageComponent, canActivate: [authGuard]},
   { path: 'doctor', loadChildren: () => import('./doctor/doctor.module').then(m => m.DoctorModule)},
 ];
 

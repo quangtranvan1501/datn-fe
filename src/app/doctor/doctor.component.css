@@ -50,6 +50,8 @@ button {
     font-weight: bold;
     color: rgb(8, 84, 44);
     margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .events {

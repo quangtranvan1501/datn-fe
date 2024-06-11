@@ -9,7 +9,15 @@
             <nz-breadcrumb-item>List</nz-breadcrumb-item>
             <nz-breadcrumb-item>App</nz-breadcrumb-item>
         </nz-breadcrumb>
-        <div class="inner-content">Content</div>
+        <div class="inner-content">
+            <div>
+                <input [(ngModel)]="message" placeholder="Enter your message"/>
+                <button (click)="sendMessage()">Send</button>
+              </div>
+              <ul>
+                <li *ngFor="let msg of messages">{{ msg }}</li>
+              </ul>
+        </div>
     </nz-content>
     <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
 </nz-layout>

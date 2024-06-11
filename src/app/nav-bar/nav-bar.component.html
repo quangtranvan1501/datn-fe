@@ -17,7 +17,7 @@
             Dịch vụ
         </div >
     </li>
-    <li nz-col [nzSpan]="3" class="navItem" nz-menu-item [nzSelected]="selectedNavItem === 'chat'">
+    <li nz-col [nzSpan]="3" class="navItem" nz-menu-item [nzSelected]="selectedNavItem === 'chat'" routerLink="/message">
         <span nz-icon nzType="customer-service" nzTheme="fill" style="color: rgb(8, 61, 84);"></span>
         <div class="itemTitle">
             Tư vấn viên
@@ -39,6 +39,12 @@
         <span nz-icon nzType="history" nzTheme="outline" style="color: rgb(54, 227, 27);"></span>
         <div class="itemTitle">
             Tra cứu hóa đơn
+        </div>
+    </li>
+    <li *ngIf="isLogin" nz-col [nzSpan]="3" class="navItem" nz-menu-item [nzSelected]="selectedNavItem === 'record-history'" routerLink="/record-history">
+        <span nz-icon nzType="history" nzTheme="outline" style="color: rgb(54, 227, 27);"></span>
+        <div class="itemTitle">
+            Tra cứu bênh án
         </div>
     </li>
 </ul>

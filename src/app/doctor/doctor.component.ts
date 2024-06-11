@@ -19,7 +19,8 @@ export class DoctorComponent implements OnInit {
   dayList: any = []
   examinationSchedulesList :any = []
   listDataMap: { [key: string]: Array<{ type: string, content: string }> } = {};
-
+  selectedValue = new Date();
+  
   getMonthData(month: Date): number {
     // Return some data based on the month if needed
     return month.getMonth() + 1;
@@ -84,12 +85,18 @@ export class DoctorComponent implements OnInit {
     }
     this.doctor = JSON.parse(currentUser)
 
-    this.appService.getById<any>(this.doctor.id, '/scheduleDoctors/doctor').subscribe(response => {
+    var body = {
+      doctorId: this.doctor.id,
+      sortBy: ['day:desc'],
+      page: 1,
+      limit: 1000
+    }
+    this.appService.query<any>(body, '/scheduleDoctors/doctor').subscribe(response => {
       if (!response.body) {
         return;
       }
       if (response.body.code == 200) {
-        const doctorShedule = response.body.data;
+        const doctorShedule = response.body.data.results;
         doctorShedule.forEach((item: any) => {
           this.listDataMap[item.day.split('T')[0]] = [
             { type: 'success', content: `Start: ${item.startTime}` },

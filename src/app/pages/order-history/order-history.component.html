@@ -15,7 +15,11 @@
                             Mã hóa đơn: {{order.orderId}}
                             <div class="orderDate">Ngày tạo hóa đơn: {{order.orderDate | date: 'dd/MM/yyyy HH:mm'}}</div>
                         </div>
-                        <div class="orderStatus">Trạng thái: {{order.status}}</div>
+                        <div class="orderStatus">Trạng thái: 
+                          <nz-tag *ngIf="order.status === '1'" nzColor="success">Đã thanh toán</nz-tag>
+                          <nz-tag *ngIf="order.status === '0'" nzColor="processing">Chưa thanh toán</nz-tag>
+                          <nz-tag *ngIf="order.status === '-1'" nzColor="error">Đã hủy</nz-tag>
+                        </div>
                     </div>
                     <div class="orderService">
                         <nz-table #basicTable [nzData]="order.orderService" [nzFrontPagination]="false" [nzShowPagination]="false">

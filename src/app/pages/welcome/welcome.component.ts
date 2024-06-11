@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
+import { ChatService } from 'src/app/service/chat.service';
 
 @Component({
   selector: 'app-welcome',
@@ -7,10 +8,21 @@ import { AuthService } from 'src/app/service/auth.service';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
-  constructor(
-    private authService: AuthService
-  ) { }
+  message = '';
+  messages: string[] = [];
+  constructor(private chatService: ChatService) { }
+
   ngOnInit() {
+    this.chatService.getMessages().subscribe(() => {
+      // this.messages.push(msg);
+    });
+  }
+
+  sendMessage() {
+    if (this.message.trim()) {
+      this.chatService.sendMessage(this.message);
+      this.message = '';
+    }
   }
 
 }

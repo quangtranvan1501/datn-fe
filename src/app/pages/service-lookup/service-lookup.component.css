@@ -37,19 +37,29 @@ button{
     color: rgb(8, 84, 44);
     margin-bottom: 20px;
 }
+.searchUser{
+    margin: 20px 0;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+.searchTitle, .searchLabel{
+    margin-right: 18px;
+    font-weight: 600;
+    font-size: 18px;
+}
 .searchItem{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
+    width: 50%;
 }
-.searchInput input{
+.searchInput{
+    width: 50%;
+}
+.pagination{
+    margin: 16px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+nz-select{
     width: 100%;
-}
-.searchInput nz-select{
-    width: 100%;
-}
-.searchLabel{
-    margin-right: 20px;
-    font-weight: bold;
 }

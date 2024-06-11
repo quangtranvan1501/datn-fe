@@ -6,31 +6,31 @@
     <app-nav-bar routerNav="service"></app-nav-bar>
     <div class="inner-content">
       <div class="titlePage">Tra cứu dịch vụ khám</div>
-      <div nz-row>
-        <div class="searchItem" nz-col [nzSpan]="8">
-          <div class="searchLabel" nz-col [nzSpan]="6">Nhập</div>
-          <div class="searchInput" nz-col [nzSpan]="16">
-            <input nz-input placeholder="Tên dịch vụ / Mã dịch vụ" (keyup.enter)="filterSchedule()" [(ngModel)]="serviceName" />
-          </div>
+      <div class="searchUser">
+        <div class="searchItem">
+            <div class="searchTitle">Tìm kiếm</div>
+            <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton" style="width: 400px;">
+                <input type="text" nz-input placeholder="Mã dịch vụ/Tên dịch vụ" [(ngModel)]="inputSearch"
+                    (keyup.enter)="searchUser()" />
+            </nz-input-group>
+            <ng-template #suffixIconButton>
+                <button nz-button nzType="primary" nzSearch><span nz-icon nzType="search"
+                        (click)="searchUser()"></span></button>
+            </ng-template>
         </div>
-        <div class="searchItem" nz-col [nzSpan]="2"></div>
-        <div class="searchItem" nz-col [nzSpan]="6">
-          <div class="searchLabel" nz-col [nzSpan]="6">Khoa</div>
-          <div class="searchInput" nz-col [nzSpan]="16">
-            <nz-select nzPlaceHolder="Chọn khoa" [(ngModel)]="specialistItem"
-              (ngModelChange)="onSpecialistChange($event)">
-              <nz-option *ngFor="let specialist of specialistList" [nzLabel]="specialist.name"
-                [nzValue]="specialist.id">
-              </nz-option>
-            </nz-select>
-          </div>
+        <div class="searchItem">
+            <div class="searchLabel">Khoa</div>
+            <div class="searchInput">
+                <nz-select nzPlaceHolder="Chọn khoa" [(ngModel)]="specialistItem"
+                    (ngModelChange)="onSpecialistChange($event)">
+                    <nz-option *ngFor="let specialist of specialistList" [nzLabel]="specialist.name"
+                        [nzValue]="specialist.id">
+                    </nz-option>
+                </nz-select>
+            </div>
         </div>
-        <div class="searchItem" nz-col [nzSpan]="8">
-          <button nz-button (click)="filterSchedule()">Tìm kiếm</button>
-        </div>
-      </div>
-      <nz-table #basicTable [nzData]="filteredService" nzBordered [nzPageSize]="pageSize" [nzPageIndex]="pageIndex"
-        [nzTotal]="total" nzShowSizeChanger   [nzScroll]="{ y: '40vh' }">
+    </div>
+      <nz-table #basicTable [nzData]="listOfData" [nzBordered]="true" [nzShowPagination]="false" [nzScroll]="{ y: '40vh' }">
         <thead>
           <tr>
             <th nzWidth="60px">STT</th>
@@ -54,7 +54,13 @@
           </tr>
         </tbody>
       </nz-table>
-      <nz-pagination [nzPageSize]="pageSize" [nzPageIndex]="pageIndex" [nzTotal]="total" (nzPageIndexChange)="demo($event)"></nz-pagination> 
+      <div class="pagination">
+        <nz-pagination [nzPageIndex]="pageIndex" [nzPageSize]="pageSize" [nzTotal]="total"
+            [nzShowTotal]="rangeTemplate" (nzPageIndexChange)="changePageIndex($event)"></nz-pagination>
+        <ng-template #rangeTemplate let-range="range" let-total>
+            {{ range[0] }}-{{ range[1] }} of {{ total }} dịch vụ
+        </ng-template>
+    </div>
     </div>
   </nz-content>
   <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>

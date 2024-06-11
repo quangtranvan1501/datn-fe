@@ -37,40 +37,24 @@ th{
     font-weight: bold;
     color: rgb(8, 84, 44);
     margin-bottom: 20px;
-}
-.orderItem{
-    border-radius: 8px;
-    box-shadow: 2px 2px 4px rgb(205, 205, 205);
-    padding: 12px;
-    margin-bottom: 20px;
-}
-.orderTitle{
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #333;
-    padding-bottom: 12px;
-    margin-bottom: 12px;
 }
-.title1{
-    font-size: 18px;
-    font-weight: 500;
-}
-.orderDate{
-    color: gray;
-    font-size: 14px;
-    font-style: italic;
-    font-weight: 400;
-}
-.orderStatus{
-    font-weight: 700;
-    font-size: 18px;
-    font-style: italic;
+.pagination{
+    margin: 16px 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
 }
-.orderSum{
-    font-size: large;
-    font-weight: 700;
-    font-style: italic;
+button{
+    margin-right: 8px;
+}
+.searchUser{
+    margin: 20px 0;
+    padding: 12px;
+    display: flex;
+}
+.searchTitle{
+    margin-right: 18px;
+    font-weight: 600;
+    font-size: 18px;
 }

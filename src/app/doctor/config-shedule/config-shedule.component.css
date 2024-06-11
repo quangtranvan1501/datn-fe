@@ -47,3 +47,8 @@ button{
 .btn-change{
     background-color: rgb(8, 84, 44);
 }
+.pagination{
+    margin: 16px 0;
+    display: flex;
+    justify-content: flex-end;
+}

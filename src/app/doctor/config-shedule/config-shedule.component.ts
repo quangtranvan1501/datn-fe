@@ -20,6 +20,12 @@ export class ConfigSheduleComponent implements OnInit {
   isCreate = false;
   startTime: any;
   endTime: any;
+  doctorId: any;
+  pageIndex: number = 1
+  pageSize: number = 5
+  total: number = 0
+  isChange: boolean = false;
+  status: any;
 
   filterStatus = [
     { text: 'Từ chối', value: '-1' },
@@ -39,13 +45,6 @@ export class ConfigSheduleComponent implements OnInit {
     endTime: [new Date(), [Validators.required]],
   });
 
-  // validateTime: ValidatorFn = () => {
-
-  //   return (control: AbstractControl): ValidationErrors | null => {
-  //     const valid = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/.test(control.value);
-  //     return valid ? null : { timeFormat: true };
-  //   };
-  // }
   constructor(
     private appService: AppService,
     private modal: NzModalService,
@@ -71,17 +70,13 @@ export class ConfigSheduleComponent implements OnInit {
   closeEdit() {
     this.isCreate = false;
   }
+
   createShudele(){
-    // this.sheduleForm.patchValue({
-    //   doctorId: this.doctor.id,
-    //   startTime: this.startTime,
-    //   endTime: this.endTime
-    // })
     const body = {
       doctorId: this.doctor.id,
       day: this.sheduleForm.value.day? this.datePipe.transform(this.sheduleForm.value.day, 'yyyy-MM-dd') : '',
       startTime: this.sheduleForm.value.startTime? this.formatTime(this.sheduleForm.value.startTime) : '',
-      endTime: this.sheduleForm.value.endTime?.getHours() + ':' + this.sheduleForm.value.endTime?.getMinutes(),
+      endTime: this.sheduleForm.value.endTime? this.formatTime(this.sheduleForm.value.endTime) : '',
     }
     this.appService.post<any, any>(body, '/scheduleDoctors').subscribe(response => {
       if (!response.body) {
@@ -131,44 +126,63 @@ export class ConfigSheduleComponent implements OnInit {
       }
     })
   };
-  edit(data: any) {
-    console.log('edit', data)
+
+  changePageIndex(pageIndex: number) {
+    this.pageIndex = pageIndex
+    if(this.isChange){
+      this.sortSheduleDoctor(this.status)
+    }else{
+      this.getSheduleDoctor()
+    }
   }
 
   sortSheduleDoctor(statuses: any) {
-    let statusArray: any;
-    console.log(statuses[0].value)
-    if (statuses[0].value.length > 0) {
-       statusArray = statuses[0].value
+    if(!statuses){
+      this.getSheduleDoctor()
+    } else{
+      var body = {
+        doctorId: this.doctor.id,
+        status: statuses,
+        sortBy: ['day:desc'],
+        page: this.pageIndex,
+        limit: this.pageSize
+      }
+      this.appService.query<any>(body, '/scheduleDoctors/doctor').subscribe(response => {
+        if (!response.body) {
+          return;
+        }
+        if (response.body.code == 200) {
+          this.sheduleDoctor = response.body.data.results;
+          console.log(this.sheduleDoctor)
+          // this.filteredSheduleDoctor = this.sheduleDoctor;
+          this.total = response.body.data.totalResults
+        }
+      })
     }
-    console.log(statusArray)
-    
-    if (statusArray) {
-      this.filteredSheduleDoctor = this.sheduleDoctor.filter((item: any) => {
-        console.log(statusArray.includes(item.status))
-        return statusArray.includes(item.status);
-      });
-    }
-    
   }
 
-  onQueryParamsChange(params: NzTableQueryParams): void {
-    console.log(params);
-    const { pageSize, pageIndex, sort, filter } = params;
-    const currentSort = sort.find(item => item.value !== null);
-    const sortField = (currentSort && currentSort.key) || null;
-    const sortOrder = (currentSort && currentSort.value) || null;
-    this.sortSheduleDoctor(filter);
+  onQueryParamsChange(value: any[]): void {
+    this.isChange = true;
+    this.status = value
+    this.sortSheduleDoctor(value)
   }
 
   getSheduleDoctor() {
-    this.appService.getById<any>(this.doctor.id, '/scheduleDoctors/doctor').subscribe(response => {
+    this.isChange = false;
+    var body = {
+      doctorId: this.doctor.id,
+      sortBy: ['day:desc'],
+      page: this.pageIndex,
+      limit: this.pageSize
+    }
+    this.appService.query<any>(body, '/scheduleDoctors/doctor').subscribe(response => {
       if (!response.body) {
         return;
       }
       if (response.body.code == 200) {
-        this.sheduleDoctor = response.body.data;
-        this.filteredSheduleDoctor = this.sheduleDoctor;
+        this.sheduleDoctor = response.body.data.results;
+        // this.filteredSheduleDoctor = this.sheduleDoctor;
+        this.total = response.body.data.totalResults
       }
     })
   }
@@ -176,10 +190,9 @@ export class ConfigSheduleComponent implements OnInit {
   ngOnInit(): void {
     this.i18n.setLocale(vi_VN);
     const currentUser = localStorage.getItem('currentUser')
-    if (!currentUser) {
-      return;
+    if(currentUser){
+      this.doctor = JSON.parse(currentUser)
     }
-    this.doctor = JSON.parse(currentUser)
     this.getSheduleDoctor()
   }
 }

@@ -29,6 +29,7 @@ import { SheduleListComponent } from './shedule-list/shedule-list.component';
 import { MedicalRecordComponent } from './medical-record/medical-record.component';
 import { CreateRecordComponent } from './create-record/create-record.component';
 import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
     NzRadioModule,
     NzTableModule,
     NzTagModule,
-    NzTimePickerModule
+    NzTimePickerModule,
+    NzPaginationModule
   ]
 })
 export class DoctorModule { }

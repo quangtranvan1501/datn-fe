@@ -35,6 +35,9 @@ import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { OrderHistoryComponent } from '../order-history/order-history.component';
 import { SheduleHistoryComponent } from '../shedule-history/shedule-history.component';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { NzTagModule } from 'ng-zorro-antd/tag';
+import { RecordHistoryComponent } from '../record-history/record-history.component';
+import { MessageComponent } from '../message/message.component';
 @NgModule({
   imports: [
     WelcomeRoutingModule,
@@ -60,7 +63,8 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
     NzTableModule,
     NzSelectModule,
     NzStepsModule,
-    NzPaginationModule
+    NzPaginationModule,
+    NzTagModule
   ],
   declarations: [
     WelcomeComponent,
@@ -72,7 +76,9 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
     PriceFormatPipe,
     ScheduleComponent,
     OrderHistoryComponent,
-    SheduleHistoryComponent
+    SheduleHistoryComponent,
+    RecordHistoryComponent,
+    MessageComponent
   ],
   exports: [WelcomeComponent, NavBarComponent],
   providers: [

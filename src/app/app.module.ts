@@ -33,6 +33,8 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { AuthInterceptor } from './http-interceptors/auth-interceptor';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from './service/environments/environments';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 registerLocaleData(en);
 
@@ -71,7 +73,8 @@ registerLocaleData(en);
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    SocketIoModule.forRoot(config)
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

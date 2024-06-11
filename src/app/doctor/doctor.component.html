@@ -8,10 +8,13 @@
         <div nz-col [nzSpan]="1"></div>
         <div nz-col [nzSpan]="19" class="inner-content">
             <div class="titlePage">
-                Dashboard cá nhân:
+                Dashboard cá nhân
+                <div>
+                    Ngày: {{ selectedValue | date: 'dd/MM/yyyy' }}
+                </div>
             </div>
             <div>
-                <nz-calendar (nzSelectChange)="selectChange($event)">
+                <nz-calendar [(ngModel)]="selectedValue" (nzSelectChange)="selectChange($event)">
                     <ul *nzDateCell="let date" class="events">
                         <ng-container *ngIf="date | date:'yyyy-MM-dd' as dateString">
                             <ng-container *ngIf="listDataMap[dateString] as items">

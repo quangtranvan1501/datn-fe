@@ -48,3 +48,11 @@ td{
 ::ng-deep .ant-descriptions-view td{
     font-size: 18px;
 }
+.userInfo{
+    background: #fff;
+    padding: 24px;
+    min-height: 280px;
+    /* margin-top: 50px; */
+    border-radius: 4px;
+    box-shadow: 3px 3px 4px rgb(205, 205, 205);
+}

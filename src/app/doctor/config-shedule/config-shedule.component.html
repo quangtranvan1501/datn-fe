@@ -12,14 +12,14 @@
                     nzTheme="outline"></span> Đăng ký</button>
             </div>
             <div>
-                <nz-table #basicTable [nzData]="filteredSheduleDoctor" nzBordered (nzQueryParams)="onQueryParamsChange($event)">
+                <nz-table #basicTable [nzData]="sheduleDoctor" nzBordered [nzFrontPagination]="false">
                     <thead>
                         <tr>
                             <th>STT</th>
                             <th>Ngày</th>
                             <th>Thời gian bắt đầu</th>
                             <th>Thời gian kết thúc</th>
-                            <th nzColumnKey="status" [nzFilters]="filterStatus" [nzFilterFn]="true">Trạng thái</th>
+                            <th nzColumnKey="status" [nzFilters]="filterStatus" [nzFilterFn]="true" [nzFilterMultiple]="false" (nzFilterChange)="onQueryParamsChange($event)">Trạng thái</th>
                             <th>Thao tác</th>
                         </tr>
                     </thead>
@@ -40,6 +40,12 @@
                         </tr>
                     </tbody>
                 </nz-table>
+                <div class="pagination">
+                    <nz-pagination [nzPageIndex]="pageIndex" [nzPageSize]="pageSize" [nzTotal]="total" [nzShowTotal]="rangeTemplate" (nzPageIndexChange)="changePageIndex($event)"></nz-pagination>
+                    <ng-template #rangeTemplate let-range="range" let-total>
+                        {{ range[0] }}-{{ range[1] }} of {{ total }} doctor
+                      </ng-template>
+                </div>
             </div>
         </div>
     </nz-content>

@@ -189,7 +189,7 @@ export class ConfigSheduleComponent implements OnInit {
 
   ngOnInit(): void {
     this.i18n.setLocale(vi_VN);
-    const currentUser = localStorage.getItem('currentUser')
+    const currentUser = sessionStorage.getItem('currentUser')
     if(currentUser){
       this.doctor = JSON.parse(currentUser)
     }

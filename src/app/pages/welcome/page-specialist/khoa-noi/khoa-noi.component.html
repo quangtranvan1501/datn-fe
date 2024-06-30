@@ -1,0 +1,55 @@
+<nz-layout>
+    <nz-header>
+        <app-header></app-header>
+    </nz-header>
+    <nz-content>
+        <app-nav-bar routerNav="home"></app-nav-bar>
+        <div class="inner-content">
+            <div class="titlePage">Chuyên Khoa Nội</div>
+            <div nz-row>
+                <div class="conent" nz-col nzSpan="18">
+                    <p>Khoa Nội hướng tới quy trình thăm khám, chẩn đoán và điều trị theo tiêu chuẩn quốc tế. Hiện tại,
+                        khoa Nội thực hiện thăm khám và điều trị nội khoa các bệnh lý về thần kinh, nội tiết, miễn dịch,
+                        tiêu hóa, hô hấp, tim mạch,.. Với đội ngũ bác sĩ giỏi chuyên môn, giàu kinh nghiệm; trang thiết
+                        bị y khoa hiện đại đáp ứng nhu cầu khám chữa bệnh chất lượng cao của hàng triệu khách hàng.</p>
+
+                    <h2>1. Các dịch vụ cung cấp tại Khoa Nội</h2>
+                    <ul>
+                        <li>Khám điều trị bệnh nội hô hấp;</li>
+                        <li>Khám điều trị bệnh nội tiêu hóa – gan mật;</li>
+                        <li>Khám điều trị bệnh nội thần kinh;</li>
+                        <li>Khám điều trị bệnh nội cơ – xương – khớp;</li>
+                        <li>Khám điều trị bệnh nội tim mạch - Khám, tư vấn, sàng lọc, tầm soát ung thư;</li>
+                        <li>Khám chuyên khoa nội tiết;</li>
+                        <li>Cung cấp gói khám sức khỏe tổng quát từ cơ bản đến nâng cao.</li>
+                    </ul>
+
+                    <h2>2. Đội ngũ Chuyên gia, Bác sĩ</h2>
+                    <p>Để hỗ trợ tư vấn, chăm sóc sức khỏe chuyên sâu cho bệnh nhân ở mọi lứa tuổi, Khoa Nội phát triển
+                        đội ngũ Bác sĩ giỏi chuyên môn, giàu kinh nghiệm - từng có nhiều năm làm việc tại các Bệnh viện
+                        công hàng đầu cả nước. Bên cạnh đó, đội ngũ y tá, điều dưỡng nhiệt huyết luôn tận tâm với công
+                        việc sẽ đem đến sự hài lòng tuyệt đối cho khách hàng.</p>
+
+                    <h2>3. Cơ sở vật chất, trang thiết bị</h2>
+                    <p>Từ khi thành lập đến nay, Khoa Nội được chú trọng đầu tư hệ thống trang thiết bị công nghệ hiện
+                        đại như máy điện não, lưu huyết não, hệ thống siêu âm tim mạch, máy nội soi tai mũi họng, máy
+                        nội soi đại tràng, dạ dày… nhằm chẩn đoán chính xác các bệnh lý chuyên khoa. Bên cạnh đó, phòng
+                        khám được chú trọng đầu tư với đầy đủ các tiện nghi, phòng ốc rộng rãi khang trang thoáng mát,
+                        sạch sẽ tạo không gian thoải mái cho tất cả khách hàng thăm khám.</p>
+                </div>
+                <div class="listDoctor" nz-col nzSpan="5" nzOffset="1">
+                    <div class="title">Đội ngũ bác sĩ chuyên khoa</div>
+                    <div nz-row class="content">
+                        <div nz-col class="doctorItem" *ngFor="let doctor of doctorList">
+                            <div class="doctorAvatar">
+                                <nz-avatar nzIcon="user" style="background-color:rgb(8, 84, 44);"></nz-avatar>
+                            </div>
+                            <div class="doctorName">{{doctor.name}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nz-content>
+    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+</nz-layout>

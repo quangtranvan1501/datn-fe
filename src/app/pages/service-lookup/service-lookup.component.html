@@ -30,7 +30,7 @@
             </div>
         </div>
     </div>
-      <nz-table #basicTable [nzData]="listOfData" [nzBordered]="true" [nzShowPagination]="false" [nzScroll]="{ y: '40vh' }">
+      <nz-table #basicTable [nzData]="listOfData" [nzBordered]="true" [nzShowPagination]="false" [nzScroll]="{ y: '40vh', x: '100vw' }">
         <thead>
           <tr>
             <th nzWidth="60px">STT</th>
@@ -49,7 +49,7 @@
             <td>{{ data.specialist.name }}</td>
             <td>{{ data.price | priceFormat }}</td>
             <td>
-              <a>Delete</a>
+              <a routerLink="/schedule/{{data.serviceId}}">Đặt lịch ngay</a>
             </td>
           </tr>
         </tbody>

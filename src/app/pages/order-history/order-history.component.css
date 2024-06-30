@@ -74,3 +74,11 @@ th{
     font-weight: 700;
     font-style: italic;
 }
+.btn-order{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+}
+.btn-order button{
+    margin-right: 18px;
+}

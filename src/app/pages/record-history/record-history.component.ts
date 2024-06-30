@@ -131,7 +131,7 @@ export class RecordHistoryComponent {
   }
 
   ngOnInit(): void {
-    const currentUser = localStorage.getItem('currentUser')
+    const currentUser = sessionStorage.getItem('currentUser')
     if(currentUser){
       this.user = JSON.parse(currentUser)
     }

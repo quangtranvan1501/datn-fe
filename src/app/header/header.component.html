@@ -1,16 +1,11 @@
 <div nz-row nzJustify="space-between" class="header-wapper">
-    <div class="logo" nz-col nzSpan="4" nzXs="6" nzSm="4" nzMd="4">
+    <div class="logo" nz-col nzSpan="4" nzXs="12" nzSm="4" nzMd="4" routerLink="/welcome">
         <img src='assets/images/logo.png' alt="logo" />
     </div>
-    <div class="search" nz-col nzSpan="14" nzXs="4" nzSm="10" nzMd="14">
-        <nz-input-group class="inputSearch" nzSearch [nzAddOnAfter]="suffixIconButton">
-            <input type="text" nz-input placeholder="input search text" />
-        </nz-input-group>
-        <ng-template #suffixIconButton>
-            <button nz-button nzType="primary" nzSearch><span nz-icon nzType="search"></span></button>
-        </ng-template>
+    <div class="search" nz-col nzSpan="14" nzSm="10" nzMd="14">
+        <h2 class="tiletHeader">Chào mừng bạn đến với trang thông tin phòng khám Thái Thịnh</h2>
     </div>
-    <div nz-col class="info" nzSpan="6" nzXs="14" nzSm="10" nzMd="6">
+    <div nz-col class="info" nzSpan="6" nzXs="12" nzSm="10" nzMd="6">
         <ng-container *ngIf="!isLogin; else infoUser">
             <button routerLink="/login" nzSize="default" nz-button>Đăng nhập</button>
         </ng-container>

@@ -10,6 +10,8 @@ import { OrderHistoryComponent } from './pages/order-history/order-history.compo
 import { SheduleHistoryComponent } from './pages/shedule-history/shedule-history.component';
 import { RecordHistoryComponent } from './pages/record-history/record-history.component';
 import { MessageComponent } from './pages/message/message.component';
+import { ChatBotComponent } from './pages/chat-bot/chat-bot.component';
+import { ReturnPaymentComponent } from './pages/return-payment/return-payment.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/welcome' },
@@ -19,11 +21,14 @@ const routes: Routes = [
   { path: 'change-password', component: ChangePasswordComponent, canActivate: [authGuard]},
   { path: 'service-lookup', component: ServiceLookupComponent},
   { path: 'schedule', component: ScheduleComponent, canActivate: [authGuard]},
+  { path: 'schedule/:serviceId', component: ScheduleComponent, canActivate: [authGuard]},
   { path: 'order-history', component: OrderHistoryComponent, canActivate: [authGuard]},
   { path: 'shedule-history', component: SheduleHistoryComponent, canActivate: [authGuard]},
   { path: 'record-history', component: RecordHistoryComponent, canActivate: [authGuard]},
   { path: 'message', component: MessageComponent, canActivate: [authGuard]},
+  { path: 'chat-bot', component: ChatBotComponent, canActivate: [authGuard]},
   { path: 'doctor', loadChildren: () => import('./doctor/doctor.module').then(m => m.DoctorModule)},
+  { path: 'payment', component: ReturnPaymentComponent}
 ];
 
 @NgModule({

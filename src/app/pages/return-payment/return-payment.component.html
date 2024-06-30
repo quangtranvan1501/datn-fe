@@ -1,0 +1,22 @@
+<nz-layout>
+    <nz-header>
+        <app-header></app-header>
+    </nz-header>
+    <nz-content>
+        <div class="inner-content">
+            <nz-result *ngIf="isPayment" nzStatus="success" nzTitle="Bạn đã thanh toán thành công!"
+                nzSubTitle="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait.">
+                <div nz-result-extra>
+                    <button nz-button nzType="primary" (click)="backToHome()">Trang chủ</button>
+                </div>
+            </nz-result>
+            <nz-result *ngIf="!isPayment" nzStatus="error" nzTitle="Bạn đã hủy đơn hàng!"
+                nzSubTitle="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait.">
+                <div nz-result-extra>
+                    <button nz-button nzType="primary" (click)="backToHome()">Trang chủ</button>
+                </div>
+            </nz-result>
+        </div>
+    </nz-content>
+    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+</nz-layout>

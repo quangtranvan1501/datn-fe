@@ -105,3 +105,26 @@ button {
     color: #ccc; 
     cursor: not-allowed; 
 }
+
+.listBTN{
+    margin: 12px 0;
+}
+
+.btnItem{
+    /* background: #5ca767; */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin: 6px 12px;
+    color: #333;
+    font-weight: 600;
+}
+/* làm sao để khi click vào button thì nó sẽ hiện màu khác */
+.btnItem:hover{
+    background: #4a8c4f;
+    color: #fff;
+}
+.active{
+    background: rgb(8, 84, 44);
+    color: #fff;
+
+}

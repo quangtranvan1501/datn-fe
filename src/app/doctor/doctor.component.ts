@@ -32,7 +32,7 @@ export class DoctorComponent implements OnInit {
 
     const body = {
       day: select,
-      doctor: this.doctor.id
+      doctor: this.doctor.id,
     }
 
     this.appService.post<any, any>(body, '/examinationSchedules/doctor/day').subscribe(response => {
@@ -79,7 +79,7 @@ export class DoctorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const currentUser = localStorage.getItem('currentUser')
+    const currentUser = sessionStorage.getItem('currentUser')
     if (!currentUser) {
       return;
     }
@@ -87,6 +87,7 @@ export class DoctorComponent implements OnInit {
 
     var body = {
       doctorId: this.doctor.id,
+      status: '1',
       sortBy: ['day:desc'],
       page: 1,
       limit: 1000

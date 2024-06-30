@@ -49,6 +49,10 @@
                             </tbody>
                           </nz-table>
                     </div>
+                    <div class="btn-order">
+                        <button nz-button [disabled]="order.status !== '0'" (click)="payment(order)" nzType="primary">Thanh toán ngay</button>
+                        <button nz-button [disabled]="order.status !== '0'" (click)="confirmDelete(order.orderId)" nzType="primary" nzDanger>Hủy hóa đơn</button>
+                    </div>
                 </div>
             </div>
         </div>

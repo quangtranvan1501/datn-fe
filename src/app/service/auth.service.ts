@@ -21,7 +21,7 @@ export class AuthService {
 
   ) { }
   getToken(): string | null {
-    let token = localStorage.getItem('accesstoken');
+    let token = sessionStorage.getItem('accesstoken');
     if (token) {
       token = token.replace(/(^"|"$)/g, ''); // Loại bỏ dấu ngoặc kép ở đầu và cuối
     }
@@ -34,9 +34,9 @@ export class AuthService {
           if (!response.body) {
             return this.router.navigate(['/login']);
           }
-          localStorage.setItem('currentUser', JSON.stringify(response.body.data.user));
-          localStorage.setItem('accesstoken', JSON.stringify(response.body.data.tokens.access.token));
-          localStorage.setItem('expirestoken', JSON.stringify(response.body.data.tokens.access.expires));
+          sessionStorage.setItem('currentUser', JSON.stringify(response.body.data.user));
+          sessionStorage.setItem('accesstoken', JSON.stringify(response.body.data.tokens.access.token));
+          sessionStorage.setItem('expirestoken', JSON.stringify(response.body.data.tokens.access.expires));
           this.loggedIn = true;
           return response; // Add this line to return the response
         }),
@@ -47,16 +47,16 @@ export class AuthService {
     return throwError(() => error); 
   }
   logout() {
-    localStorage.removeItem('currentUser');
-    localStorage.removeItem('accesstoken');
-    localStorage.removeItem('expirestoken')
+    sessionStorage.removeItem('currentUser');
+    sessionStorage.removeItem('accesstoken');
+    sessionStorage.removeItem('expirestoken')
     this.router.navigate(['/']);
     this.loggedIn = false;
   }
 
   isLoggedIn() {
-    const expirestoken = localStorage.getItem('expirestoken');
-    const accesstoken= localStorage.getItem('accesstoken')
+    const expirestoken = sessionStorage.getItem('expirestoken');
+    const accesstoken= sessionStorage.getItem('accesstoken')
     try {
       if(accesstoken){
         const decodedToken: any = jwt_decode(accesstoken);
@@ -88,9 +88,9 @@ export class AuthService {
           const user = response.body?.data?.user;
           const tokens = response.body?.data?.tokens;
           if (user && tokens) {
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            localStorage.setItem('accesstoken', tokens.access.token);
-            localStorage.setItem('expirestoken', tokens.access.expires);
+            sessionStorage.setItem('currentUser', JSON.stringify(user));
+            sessionStorage.setItem('accesstoken', tokens.access.token);
+            sessionStorage.setItem('expirestoken', tokens.access.expires);
             this.loggedIn = true;
           }
         }),

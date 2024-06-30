@@ -1,0 +1,73 @@
+<nz-layout>
+    <nz-header>
+        <app-header></app-header>
+    </nz-header>
+    <nz-content>
+        <app-nav-bar routerNav="home"></app-nav-bar>
+        <div class="inner-content">
+            <div class="titlePage">Chuyên Khoa Nhi</div>
+            <div nz-row>
+                <div class="conent" nz-col nzSpan="18">
+                    <p>Nhằm chăm sóc tốt nhất cho sức khỏe của trẻ em, Phòng khám đa khoa 125 Thái Thịnh đã thành lập
+                        Chuyên Khoa Nhi với hệ thống các thiết bị y khoa hiện đại cùng đội ngũ Bác sĩ giỏi chuyên môn,
+                        nhiều năm kinh nghiệm. Ngay từ khi thành lập, Chuyên Khoa Nhi đã trở thành một trong những cơ sở
+                        uy tín được các bậc phụ huynh tin tưởng lựa chọn. Khoa Nhi quy tụ nhiều bác sĩ giỏi hàng đầu
+                        trong lĩnh vực Nhi khoa đang công tác tại các Bệnh viện lớn như: Bệnh viện Nhi Trung ương, BV
+                        Xanh Pôn,... Các bác sĩ có kiến thức chuyên môn cao và nhiều năm kinh nghiệm, sẽ trực tiếp thăm
+                        khám, điều trị bệnh lý cho trẻ. Với sứ mệnh: Luôn ân cần - Luôn cố gắng, Khoa Nhi Phòng khám 125
+                        Thái Thịnh xứng đáng là địa chỉ tin cậy được nhiều bậc phụ huynh tin tưởng và lựa chọn khi chăm
+                        sóc sức khỏe cho bé yêu!</p>
+
+                    <h2>1. Chuyên Khoa Nhi cung cấp các dịch vụ thăm khám điều trị các bệnh cho trẻ từ sơ sinh đến dưới
+                        16 tuổi:</h2>
+                    <ul>
+                        <li>Thăm khám điều trị các bệnh lý đường hô hấp;</li>
+                        <li>Thăm khám điều trị các bệnh đường tiêu hóa;</li>
+                        <li>Điều trị, tư vấn phòng tránh các bệnh lý truyền nhiễm;</li>
+                        <li>Thăm khám, điều trị, tư vấn dinh dưỡng.</li>
+                    </ul>
+
+                    <h2>2. Đội ngũ Bác sĩ Chuyên khoa</h2>
+                    <p>Đội ngũ Bác sĩ chuyên khoa Phòng khám quy tụ các Bác sĩ giỏi chuyên môn - giàu kinh nghiệm đang
+                        công tác tại các Bệnh viện lớn như: Bệnh viện Nhi Trung ương, BV Xanh Pôn, công tác và giảng dạy
+                        tại Trường Đại học Y Hà Nội,…</p>
+
+                    <h2>3. Cơ sở vật chất</h2>
+                    <p>Cơ sở vật chất, trang thiết bị hiện đại, không gian khám chữa bệnh thoải mái, sạch sẽ thoáng mát
+                        sẽ mang đến cho bé cảm giác thư thái và dễ chịu khi thăm khám. Cùng với đó Khoa Nhi được ứng
+                        dụng công nghệ và kỹ thuật chẩn đoán tiên tiến hiện nay, qua đó hỗ trợ tối đa cho các Bác sĩ
+                        trong quá trình thăm khám và điều trị bệnh nhi.</p>
+
+                    <h2>4. Tiện ích tại Nhi Khoa</h2>
+                    <p>Tiện ích đặt hẹn giúp mẹ và bé giảm tối đa thời gian chờ đợi: Đặt hẹn tại link: <a
+                            href="http://thaithinhmedic.vn/dat-hen">http://thaithinhmedic.vn/dat-hen</a> hoặc liên hệ
+                        Tổng đài CSKH: 0243 853 5522</p>
+
+                    <p>Thời gian làm việc: Phòng khám làm việc tất cả các ngày trong tuần</p>
+                    <p>Từ Thứ 2 đến Chủ nhật hàng tuần - Ca sáng: 07h30 - 12h00 | Ca chiều: 13h30 - 17h00 | Ca tối:
+                        17h00 - 20h00</p>
+                    <p>Riêng đối với phòng Vip: Thời gian làm việc vào tất cả các ca tối trong tuần & cả 3 ca trong 2
+                        ngày Thứ 7 và Chủ nhật hàng tuần. (Để phục vụ được tốt, các cha mẹ vui lòng đặt hẹn trước khi
+                        tới thăm khám)</p>
+
+                    <p>Cùng quyết tâm xây dựng thương hiệu uy tín hàng đầu tại Thủ đô trong lĩnh vực Y tế tư nhân, Phòng
+                        khám Đa khoa 125 Thái Thịnh luôn chú trọng phát triển theo hướng kết hợp Chất lượng chuyên môn –
+                        Trang thiết bị y tế hiện đại – Chất lượng dịch vụ để mang đến cho khách hàng sự tin tưởng tuyệt
+                        đối khi lựa chọn dịch vụ tại Phòng khám Đa khoa 125 Thái Thịnh.</p>
+                </div>
+                <div class="listDoctor" nz-col nzSpan="5" nzOffset="1">
+                    <div class="title">Đội ngũ bác sĩ chuyên khoa</div>
+                    <div nz-row class="content">
+                        <div nz-col class="doctorItem" *ngFor="let doctor of doctorList">
+                            <div class="doctorAvatar">
+                                <nz-avatar nzIcon="user" style="background-color:rgb(8, 84, 44);"></nz-avatar>
+                            </div>
+                            <div class="doctorName">{{doctor.name}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nz-content>
+    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+</nz-layout>

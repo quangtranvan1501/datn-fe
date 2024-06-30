@@ -83,19 +83,26 @@
                     <div class="searchService" nz-col [nzSpan]="12">
                         <div class="scheduleItem">
                             <div class="scheduleLabel">Vui lòng chọn thời gian: </div>
-                            <nz-date-picker nzFormat="yyyy-MM-dd HH:mm" [nzDisabledDate]="disabledDate" (ngModelChange)="onTimeChange($event)"
-                                [(ngModel)]="sheduleDay"
-                                [nzShowTime]="{ nzDefaultOpenValue: timeDefaultValue }"></nz-date-picker>
+                            <nz-date-picker nzFormat="dd/MM/yyyy" [nzDisabledDate]="disabledDate"
+                                (ngModelChange)="onTimeChange($event)" [(ngModel)]="sheduleDay"
+                                ></nz-date-picker>
+                            <div class="listBTN">
+                                <button class="btnItem" nz-button *ngFor="let time of timeButtons" (click)="onTimeButtonClick(time, $event)" [ngClass]="{'active': isActive(time)}">
+                                    {{ time }}
+                                </button>
+                            </div>
                         </div>
                         <div class="scheduleItem">
                             <div class="scheduleLabel">Chọn bác sĩ khám (Nếu muốn): </div>
-                            <nz-select nzPlaceHolder="Chọn bác sĩ" [nzShowSearch]="true" [(ngModel)]="doctorId" (ngModelChange)="onDoctorChange($event)">
+                            <nz-select nzPlaceHolder="Chọn bác sĩ" [nzShowSearch]="true" [(ngModel)]="doctorId"
+                                (ngModelChange)="onDoctorChange($event)">
                                 <nz-option *ngFor="let doc of doctor" [nzLabel]="doc.name" [nzValue]="doc.id">
                                 </nz-option>
                             </nz-select>
                         </div>
                         <div class="btn-checkDoctorShedule">
-                            <button class="btn-next" nz-button [disabled]="isDoctor" nzType="primary" (click)="checkDoctorShedule()">Kiểm tra lịch bác sỹ</button>
+                            <button class="btn-next" nz-button [disabled]="isDoctor" nzType="primary"
+                                (click)="checkDoctorShedule()">Kiểm tra lịch bác sỹ</button>
                         </div>
 
                     </div>
@@ -103,31 +110,70 @@
             </div>
             <div *ngIf="current === 2">
                 <div class="infoShedule" nz-row>
-                    <nz-descriptions nzTitle="Thông tin đặt khám" nzBordered>
-                        <nz-descriptions-item [nzSpan]="4" nzTitle="Họ và Tên">{{user.name}}</nz-descriptions-item>
-                        <nz-descriptions-item [nzSpan]="4"
-                            nzTitle="Số điện thoại">{{user.phoneNumber}}</nz-descriptions-item>
-                        <nz-descriptions-item [nzSpan]="4" nzTitle="Ngày sinh">{{user.birthday | date:
-                            'dd/MM/yyyy'}}</nz-descriptions-item>
-                        <nz-descriptions-item [nzSpan]="4" nzTitle="Giới tính">{{ user.gender }}</nz-descriptions-item>
-                        <nz-descriptions-item [nzSpan]="4" nzTitle="Thời gian khám">{{sheduleDay | date: 'dd/MM/yyyy HH:mm'}}</nz-descriptions-item>
-                        <nz-descriptions-item [nzSpan]="4" nzTitle="Bác sĩ khám">{{getDoctorNameById(doctorId)}}</nz-descriptions-item>
-                        <nz-descriptions-item [nzSpan]="4"
-                            nzTitle="Tên dịch vụ">{{service[0].name}}</nz-descriptions-item>
-                        <nz-descriptions-item [nzSpan]="4" nzTitle="Giá tiền">{{service[0].price |
-                            priceFormat}}</nz-descriptions-item>
-                    </nz-descriptions>
+                    <div class="infoUser" nz-col [nzSpan]="12">
+                        <nz-descriptions nzTitle="Thông tin đặt khám" nzBordered>
+                            <nz-descriptions-item [nzSpan]="4" nzTitle="Họ và Tên">{{user.name}}</nz-descriptions-item>
+                            <nz-descriptions-item [nzSpan]="4"
+                                nzTitle="Số điện thoại">{{user.phoneNumber}}</nz-descriptions-item>
+                            <nz-descriptions-item [nzSpan]="4" nzTitle="Ngày sinh">{{user.birthday | date:
+                                'dd/MM/yyyy'}}</nz-descriptions-item>
+                            <nz-descriptions-item [nzSpan]="4" nzTitle="Giới tính">{{ user.gender
+                                }}</nz-descriptions-item>
+                            <nz-descriptions-item [nzSpan]="4" nzTitle="Thời gian khám">{{sheduleDay | date :
+                                'dd/MM/yyyy HH:mm'}}</nz-descriptions-item>
+                            <nz-descriptions-item [nzSpan]="4"
+                                nzTitle="Bác sĩ khám">{{getDoctorNameById(doctorId)}}</nz-descriptions-item>
+                                <nz-descriptions-item [nzSpan]="4"
+                                nzTitle="Tên dịch vụ">{{service[0].name}}</nz-descriptions-item>
+                            <nz-descriptions-item [nzSpan]="4" nzTitle="Giá tiền">{{service[0].price |
+                                priceFormat}}</nz-descriptions-item>
+                            
+                        </nz-descriptions>
+                    </div>
+                    <div class="searchService" nz-col [nzSpan]="12">
+                        <div class="searchLabel" nz-col [nzSpan]="6">Nhập mã giảm giá</div>
+                            <div class="searchInput" nz-col [nzSpan]="16">
+                                <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+                                    <input type="text" [(ngModel)]="voucherCode" nz-input placeholder="Mã giảm giá" />
+                                </nz-input-group>
+                                <ng-template #suffixIconButton>
+                                    <button (click)="useVoucher()" nz-button nzType="primary" nzSearch>Áp dụng</button>
+                                    <button (click)="clearVoucher()" nz-button nzType="primary" nzDanger nzSearch>Hủy</button>
+                                </ng-template>
+                            </div>
+                            <div>
+
+                            </div>
+                            <div>
+                                <nz-descriptions nzTitle="Thông tin hóa đơn" nzBordered>
+                                    <nz-descriptions-item [nzSpan]="4"
+                                    nzTitle="Tổng tiền">{{service[0].price |
+                                priceFormat}}</nz-descriptions-item>
+                                <nz-descriptions-item [nzSpan]="4" nzTitle="Giảm giá">{{discount | priceFormat}}</nz-descriptions-item>
+                                <nz-descriptions-item [nzSpan]="4" nzTitle="Thành tiền">{{totalAmount | priceFormat}}</nz-descriptions-item>
+                                </nz-descriptions>
+                            </div>
+                    </div>
                 </div>
             </div>
             <div class="steps-action">
                 <button nz-button nzType="default" (click)="pre()" *ngIf="current > 0">
-                    <span>Previous</span>
+                    <span>Quay lại</span>
                 </button>
-                <button class="btn-next" nz-button nzType="primary" (click)="next()" [disabled]="isDisabled" [nzLoading]="processing" *ngIf="current < 2">
-                    <span>Next</span>
+                <button class="btn-next" nz-button nzType="primary" (click)="next()" [disabled]="isDisabled"
+                    [nzLoading]="processing" *ngIf="current == 0">
+                    <span>Tiếp theo</span>
                 </button>
-                <button nz-button nzType="primary" (click)="done()" [nzLoading]="processing" *ngIf="current === 2">
-                    <span>Done</span>
+                <button class="btn-next" nz-button nzType="primary" (click)="next2()" [disabled]="isDisabled2"
+                    [nzLoading]="processing" *ngIf="current == 1">
+                    <span>Đặt lịch khám</span>
+                </button>
+                <button nz-button nzType="primary" (click)="done(false)" [nzLoading]="processing" *ngIf="current === 2">
+                    <span>Bỏ qua</span>
+                </button>
+                <button class="btn-next" nz-button nzType="primary" (click)="createOrder(true)" [nzLoading]="processing"
+                    *ngIf="current === 2">
+                    <span>Thanh toán ngay</span>
                 </button>
             </div>
         </div>

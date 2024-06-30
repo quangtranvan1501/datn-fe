@@ -4,19 +4,44 @@
     </nz-header>
     <nz-content>
         <app-nav-bar routerNav="home"></app-nav-bar>
-        <nz-breadcrumb>
-            <nz-breadcrumb-item>Home</nz-breadcrumb-item>
-            <nz-breadcrumb-item>List</nz-breadcrumb-item>
-            <nz-breadcrumb-item>App</nz-breadcrumb-item>
-        </nz-breadcrumb>
         <div class="inner-content">
-            <div>
-                <input [(ngModel)]="message" placeholder="Enter your message"/>
-                <button (click)="sendMessage()">Send</button>
-              </div>
-              <ul>
-                <li *ngFor="let msg of messages">{{ msg }}</li>
-              </ul>
+            <div class="slide">
+                <nz-carousel nzAutoPlay>
+                    <div nz-carousel-content *ngFor="let image of images">
+                        <img class="imgSlide" [src]="image" alt="Carousel Image">
+                    </div>
+                </nz-carousel>
+            </div>
+            <div class="topService">
+                <div class="titleTop">
+                    <div class="title">Dịch vụ nổi bật</div>
+                </div>
+                <div class="contentTop" nz-row>
+                    <div nz-col nzSpan="7" nzOffset="1" class="serviceItem" *ngFor="let service of services">
+                        <div class="nameService">
+                            {{service.serviceName}}
+                        </div>
+                        <div class="specialistName">
+                            Chuyên khoa: {{service.specialistName}}
+                        </div>
+                        <div class="btn-DL">
+                            <button nz-button routerLink="/schedule/{{service.serviceId}}">Đặt đặt lịch ngay</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="topService">
+                <div class="titleTop">
+                    <div class="title">Các chuyên khoa</div>
+                </div>
+
+                <div nz-row class="contentTop">
+                    <div nz-col nzSpan="5" nzOffset="1" class="specialistName1" *ngFor="let specialist of specialistList" routerLink="/welcome/{{specialist.route}}">
+                        {{specialist.name}}
+                    </div>
+                </div>
+            </div>
         </div>
     </nz-content>
     <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>

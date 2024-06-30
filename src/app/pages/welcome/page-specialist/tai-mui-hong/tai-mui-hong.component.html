@@ -1,0 +1,77 @@
+<nz-layout>
+    <nz-header>
+        <app-header></app-header>
+    </nz-header>
+    <nz-content>
+        <app-nav-bar routerNav="home"></app-nav-bar>
+        <div class="inner-content">
+            <div class="titlePage">Chuyên Khoa Tai - Mũi - Họng</div>
+            <div nz-row>
+                <div class="conent" nz-col nzSpan="18" >
+                    <p>Ngay từ khi thành lập, Khoa Tai - Mũi - Họng luôn đề ra mục tiêu là chăm sóc sức khỏe một cách
+                        toàn diện,
+                        hiệu quả các vấn đề về Tai - Mũi - Họng. Trên cơ sở chú trọng đẩy mạnh đầu tư hệ thống trang
+                        thiết bị
+                        chuyên sâu tiên tiến và phát triển đội ngũ Bác sĩ giỏi chuyên môn, giàu kinh nghiệm. Khoa Tai –
+                        Mũi-
+                        Họng không chỉ đáp ứng nhu cầu thăm khám điều trị của đông đảo khách hàng mà còn làm hài lòng
+                        với những
+                        dịch vụ y tế chuyên nghiệp, thân thiện và hiệu quả.</p>
+
+                    <h2>1. Dịch vụ tại Chuyên Khoa Tai Mũi Họng:</h2>
+
+                    <h3>1.1. Khám điều trị hiệu quả các bệnh về Tai - Mũi - Họng</h3>
+                    <ul>
+                        <li>Viêm tai giữa, nấm tai...</li>
+                        <li>Viêm họng mủ, nấm họng...</li>
+                        <li>Viêm xoang, Polyp mũi,...</li>
+                        <li>Lấy dị vật tai - mũi - họng</li>
+                    </ul>
+
+                    <h3>1.2. Đặc biệt, tại Chuyên Khoa Tai - Mũi - Họng còn có thể thực hiện các thủ thuật:</h3>
+                    <ul>
+                        <li>Nâng nắn xương chính mũi;</li>
+                        <li>Nạo VA gây tê;</li>
+                        <li>Bóc đường dò luân nhĩ;</li>
+                        <li>Chỉnh hình vành tai;</li>
+                        <li>Chích u máu;</li>
+                        <li>Cắt dính cuốn mũi</li>
+                    </ul>
+
+                    <h2>2. Cơ sở vật chất</h2>
+                    <p>Khoa Tai - Mũi - Họng Phòng khám 125 Thái Thịnh sở hữu hệ thống cơ sở vật chất tiện nghi, sang
+                        trọng giúp
+                        người bệnh cảm thấy thư giãn, thoải mái mỗi khi thăm khám và điều trị. Chúng tôi luôn cập nhật
+                        kiến thức
+                        chuyên khoa và sử dụng thành thạo các trang thiết bị hiện đại, mang đến cho người bệnh sự an tâm
+                        và tin
+                        tưởng khi thăm khám và điều trị.</p>
+                    <p>Nhằm phục vụ tốt cho công tác khám và chữa bệnh, Chuyên khoa Tai - Mũi - Họng - Phòng khám 125
+                        Thái Thịnh
+                        được đầu tư trang thiết bị hiện đại như: Máy nội soi Tai - Mũi - Họng, kết nối màn hình ti vi,
+                        máy xông
+                        mũi họng, máy hút đờm,…</p>
+
+                    <h2>3. Đội ngũ Bác sĩ chuyên khoa</h2>
+                    <p>Bên cạnh hệ thống cơ sở vật chất hiện đại, yếu tố nhân lực luôn được Phòng khám 125 Thái Thịnh
+                        chú trọng.
+                        Chuyên khoa Tai - Mũi - Họng quy tụ các bác sĩ có trình độ chuyên môn cao, giàu kinh nghiệm,
+                        giúp chuẩn
+                        đoán bệnh chính xác và điều trị bệnh hiệu quả.</p>
+                </div>
+                <div class="listDoctor" nz-col nzSpan="5" nzOffset="1">
+                    <div class="title">Đội ngũ bác sĩ chuyên khoa</div>
+                    <div nz-row class="content">
+                        <div nz-col class="doctorItem" *ngFor="let doctor of doctorList">
+                            <div class="doctorAvatar">
+                                <nz-avatar nzIcon="user" style="background-color:rgb(8, 84, 44);"></nz-avatar>
+                            </div>
+                            <div class="doctorName">{{doctor.name}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nz-content>
+    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+</nz-layout>

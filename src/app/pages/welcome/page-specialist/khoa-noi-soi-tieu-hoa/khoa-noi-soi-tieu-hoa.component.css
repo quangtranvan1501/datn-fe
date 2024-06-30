@@ -1,0 +1,90 @@
+
+nz-header {
+    background: #fff;
+    box-shadow: 2px 2px 2px rgb(205, 205, 205);
+}
+nz-breadcrumb {
+    margin: 16px 0;
+}
+
+nz-content {
+    padding: 0 50px;
+    margin-top: 10px;
+    min-height: 100vh;
+}
+
+nz-footer {
+    text-align: center;
+}
+button{
+    border-radius: 4px;
+    background-color: rgb(8, 84, 44);
+    border: none;
+    font-size: 18px;
+    color: white;
+}
+.inner-content {
+    background: #fff;
+    padding: 24px;
+    min-height: 280px;
+    margin-top: 50px;
+    border-radius: 4px;
+    box-shadow: 3px 3px 4px rgb(205, 205, 205);
+}
+.titlePage{
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(8, 84, 44);
+    margin-bottom: 20px;
+}
+.searchUser{
+    margin: 20px 0;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+.searchTitle, .searchLabel{
+    margin-right: 18px;
+    font-weight: 600;
+    font-size: 18px;
+}
+.searchItem{
+    display: flex;
+    width: 50%;
+}
+.searchInput{
+    width: 50%;
+}
+.pagination{
+    margin: 16px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+nz-select{
+    width: 100%;
+}
+.listDoctor{
+    border-radius: 8px;
+    box-shadow: 0 0 10px #ccc;
+    padding: 20px;
+}
+.doctorItem {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+}
+.title{
+    font-size: 18px;
+    font-weight: 600;
+    color: rgb(8, 84, 44);
+    margin-bottom: 12px;
+}
+.doctorAvatar {
+    margin-right: 10px;
+}
+.conent{
+    padding: 16px;
+}

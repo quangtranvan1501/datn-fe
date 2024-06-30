@@ -1,0 +1,57 @@
+<nz-layout>
+    <nz-header>
+        <app-header></app-header>
+    </nz-header>
+    <nz-content>
+        <app-nav-bar routerNav="home"></app-nav-bar>
+        <div class="inner-content">
+            <div class="titlePage">Chuyên Khoa Nội Soi Tiêu hóa</div>
+            <div nz-row>
+                <div class="conent" nz-col nzSpan="18">
+                    <h1>Khoa Nội soi tiêu hóa</h1>
+                    <p>Nội soi tiêu hóa là tên gọi chung của nội soi dạ dày – tá tràng – đại tràng – trực tràng. Đây là
+                        phương pháp hiện đại giúp phát hiện các tổn thương tiêu hóa một cách chính xác. Đặc biệt, nội
+                        soi tiêu hóa có thể giúp phát hiện các căn bệnh nguy hiểm liên quan đến hệ tiêu hóa như ung thư
+                        dạ dày, ung thư trực tràng, ung thư đại tràng, ung thư tá tràng,…từ đó đưa ra phương pháp điều
+                        trị thích hợp cho người bệnh. Chính vì lý do quan trọng đó, Phòng khám 125 Thái Thịnh đã thành
+                        lập Khoa Nội soi tiêu hóa để đáp ứng đa dạng yêu cầu về chẩn đoán và điều trị về nội soi tiêu
+                        hóa.</p>
+
+                    <h2>1. Dịch vụ tại Khoa Nội soi tiêu hóa</h2>
+                    <ul>
+                        <li>Nội soi dạ dày;</li>
+                        <li>Nội soi đại tràng;</li>
+                        <li>Nội soi trực tràng;</li>
+                        <li>Sinh thiết chẩn đoán ung thư;</li>
+                        <li>Thực hiện các thủ thuật như: Cắt polyp, Gắp dị vật tiêu hóa,…</li>
+                    </ul>
+
+                    <h2>2. Cơ sở vật chất</h2>
+                    <p>Chuyên khoa Nội soi tiêu hóa tại Phòng khám 125 Thái Thịnh được trang bị cơ sở vật chất hiện đại
+                        trong lĩnh vực nội soi tiêu hóa với hệ thống Máy nội soi Olumpus CV 170 – thương hiệu thế hệ mới
+                        nhập khẩu từ Nhật Bản. Với công nghệ nội soi dải tần ánh sáng hẹp NBI (Narrow Banding Imaging)
+                        giúp sàng lọc và chẩn đoán ung thư ống tiêu hóa (thực quản, dạ dày, tá tràng, đại tràng, trực
+                        tràng) ở giai đoạn sớm và giai đoạn rất sớm.</p>
+
+                    <h2>3. Đội ngũ Bác sĩ</h2>
+                    <p>Để chăm sóc sức khỏe cho bệnh nhân, Khoa Nội phát triển đội ngũ Bác sĩ giỏi chuyên môn, giàu kinh
+                        nghiệm - từng có nhiều năm làm việc tại các Bệnh viện công hàng đầu cả nước. Bên cạnh đó, đội
+                        ngũ y tá, điều dưỡng giàu kinh nghiệm luôn tận tâm với công việc, đề cao sự tận tụy nhiệt tình
+                        với bệnh nhân sẽ đem đến sự hài lòng tuyệt đối cho khách hàng.</p>
+                </div>
+                <div class="listDoctor" nz-col nzSpan="5" nzOffset="1">
+                    <div class="title">Đội ngũ bác sĩ chuyên khoa</div>
+                    <div nz-row class="content">
+                        <div nz-col class="doctorItem" *ngFor="let doctor of doctorList">
+                            <div class="doctorAvatar">
+                                <nz-avatar nzIcon="user" style="background-color:rgb(8, 84, 44);"></nz-avatar>
+                            </div>
+                            <div class="doctorName">{{doctor.name}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nz-content>
+    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+</nz-layout>

@@ -3,12 +3,7 @@
         <img src='assets/images/logo.png' alt="logo" />
     </div>
     <div class="search" nz-col nzSpan="14" nzXs="4" nzSm="10" nzMd="14">
-        <nz-input-group class="inputSearch" nzSearch [nzAddOnAfter]="suffixIconButton">
-            <input type="text" nz-input placeholder="input search text" />
-        </nz-input-group>
-        <ng-template #suffixIconButton>
-            <button nz-button nzType="primary" nzSearch><span nz-icon nzType="search"></span></button>
-        </ng-template>
+        <div class="tiletHeader">Chào mừng bác sỹ đến với trang thông tin phòng khám Thái Thịnh</div>
     </div>
     <div nz-col class="info" nzSpan="6" nzXs="14" nzSm="10" nzMd="6">
         <ng-container *ngIf="!isLogin; else infoUser">

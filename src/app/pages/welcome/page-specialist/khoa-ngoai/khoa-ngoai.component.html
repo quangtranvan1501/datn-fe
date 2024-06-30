@@ -1,0 +1,61 @@
+<nz-layout>
+    <nz-header>
+        <app-header></app-header>
+    </nz-header>
+    <nz-content>
+        <app-nav-bar routerNav="home"></app-nav-bar>
+        <div class="inner-content">
+            <div class="titlePage">Chuyên Khoa Ngoại</div>
+            <div nz-row>
+                <div class="conent" nz-col nzSpan="18">
+                    <p>Chuyên Khoa Ngoại là một trong những chuyên khoa trọng yếu, cung cấp các dịch vụ y tế toàn diện,
+                        chuyên nghiệp về điều trị ngoại khoa cho mọi lứa tuổi. Với đội ngũ bác sĩ giàu kinh nghiệm và hệ
+                        thống cơ sở vật chất hiện đại, phục vụ chuyên nghiệp và chu đáo sẽ đem đến sự hài lòng tuyệt đối
+                        cho khách hàng khi đến khám và điều trị tại Phòng khám 125 Thái Thịnh.</p>
+
+                    <h2>1. Khoa Ngoại tại Phòng khám 125 Thái Thịnh cung cấp các dịch vụ:</h2>
+                    <ul>
+                        <li>Ngoại khoa chấn thương chỉnh hình;</li>
+                        <li>Ngoại khoa ung bướu;</li>
+                        <li>Ngoại khoa nam khoa.</li>
+                    </ul>
+
+                    <h2>2. Chức năng và nhiệm vụ:</h2>
+                    <ul>
+                        <li>Khâu vết thương phần mềm;</li>
+                        <li>Nắn chệch khớp, tháo dịch khớp, chích, tháo, dẫn lưu ổ viêm (áp xe)...;</li>
+                        <li>Bó bột, nẹp bột;</li>
+                        <li>Cắt u các vị trí;</li>
+                        <li>Nong hẹp bao quy đầu.</li>
+                    </ul>
+
+                    <h2>3. Đội ngũ Chuyên gia, Bác sĩ</h2>
+                    <p>Đội ngũ Chuyên gia, Bác sĩ khoa Ngoại tại Phòng khám 125 Thái Thịnh được đào tạo bài bản, chuyên
+                        sâu các kỹ thuật chuyên ngành. Đồng thời, Bác sĩ và Kỹ thuật viên sử dụng thành thạo các máy
+                        móc, kỹ thuật thực hiện chuyên nghiệp, hiệu quả giúp hỗ trợ điều trị bệnh trong thời gian ngắn,
+                        đem lại hiệu quả lâu dài.</p>
+
+                    <h2>4. Cơ sở vật chất</h2>
+                    <p>Khoa ngoại Phòng khám 125 Thái Thịnh được trang bị đầy đủ các thiết bị hiện đại và tân tiến, đảm
+                        bảo quá trình điều trị luôn được diễn ra nhanh chóng và an toàn.</p>
+
+                    <p>Hội tụ Đội ngũ Bác sĩ giỏi chuyên môn - giàu kinh nghiệm, từng công tác nhiều năm tại các bệnh
+                        viện công lớn trong thành phố Hà Nội, Khoa Ngoại Phòng khám 125 Thái Thịnh tự hào là địa chỉ uy
+                        tín được hàng triệu khách hàng tin tưởng, lựa chọn sử dụng dịch vụ.</p>
+                </div>
+                <div class="listDoctor" nz-col nzSpan="5" nzOffset="1">
+                    <div class="title">Đội ngũ bác sĩ chuyên khoa</div>
+                    <div nz-row class="content">
+                        <div nz-col class="doctorItem" *ngFor="let doctor of doctorList">
+                            <div class="doctorAvatar">
+                                <nz-avatar nzIcon="user" style="background-color:rgb(8, 84, 44);"></nz-avatar>
+                            </div>
+                            <div class="doctorName">{{doctor.name}} </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nz-content>
+    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+</nz-layout>

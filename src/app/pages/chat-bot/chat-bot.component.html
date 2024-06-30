@@ -1,0 +1,49 @@
+<nz-layout>
+    <nz-header>
+        <app-header></app-header>
+    </nz-header>
+    <nz-content>
+        <app-nav-bar routerNav="chatBot"></app-nav-bar>
+        <div class="inner-content" nz-row>
+            <div class="titlePage" nz-col nzSpan="24">
+                Chat với chatBot
+            </div>
+            <!-- <div>
+                <input [(ngModel)]="userId" placeholder="Enter your message" />
+            </div> -->
+            <!-- <div class="listTVV" nz-col nzSpan="4">
+                <div class="titleTVV">Danh sách tư vấn viên</div>
+                <ul nz-menu nzMode="inline">
+                    <li nz-menu-item *ngFor="let tvv of tvvs" (click)="selectTVV(tvv)">
+                        <div class="tvvItem">
+                            <div class="avatar">
+                                <nz-avatar nzIcon="user" style="background-color:rgb(8, 84, 44);"></nz-avatar>
+                            </div>
+                            <div class="info">
+                                <div class="name">{{tvv.name}}</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div> -->
+            <div class="chat-container" nz-col nzSpan="20">
+                <div class="messages">
+                    <div *ngFor="let message of messages" class="message" [ngClass]="{ 'sent': message.from == 'user', 'received': message.from == 'chatbot' }">
+                        {{message.message}}
+                    </div>
+                    <div *ngIf="isLoading" class="received">
+                        <span nz-icon [nzType]="'loading'"></span>
+                    </div>
+                </div>
+                <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+                    <input type="text" nz-input [(ngModel)]="message" />
+                </nz-input-group>
+                <ng-template #suffixIconButton>
+                    <button nz-button nzType="primary" nzSearch (click)="sendMessage()"><span nz-icon
+                            nzType="send"></span></button>
+                </ng-template>
+            </div>
+        </div>
+    </nz-content>
+    <nz-footer>Ant Design ©2020 Implement By Angular</nz-footer>
+</nz-layout>

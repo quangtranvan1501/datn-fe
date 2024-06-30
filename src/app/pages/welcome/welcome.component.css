@@ -1,10 +1,10 @@
-
 nz-header {
     background: #fff;
     box-shadow: 2px 2px 2px rgb(205, 205, 205);
     display: flex;
     align-items: center;
 }
+
 nz-breadcrumb {
     margin: 16px 0;
 }
@@ -18,16 +18,93 @@ nz-content {
 nz-footer {
     text-align: center;
 }
-button{
-    border-radius: 4px;
+
+button {
     background-color: rgb(8, 84, 44);
-    border: none;
-    font-size: 18px;
     color: white;
 }
+
 .inner-content {
     background: #fff;
     padding: 24px;
     min-height: 280px;
 }
 
+.slide {
+    width: 90vw;
+    height: 400px;
+    /* Tùy chỉnh chiều cao theo nhu cầu của bạn */
+}
+
+[nz-carousel-content] {
+    width: auto;
+    text-align: center;
+    height: 160px;
+    line-height: 160px;
+    color: #fff;
+    overflow: hidden;
+}
+
+.imgSlide {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.topService{
+
+    margin-top: 20px;
+}
+.titleTop{
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 20px;
+}
+.title{
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+.contentTop{
+}
+.serviceItem{
+    padding: 20px;
+    box-shadow: 4px 4px 4px rgba(209, 209, 209);
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background-color: rgb(229, 236, 232);
+}
+.nameService{
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+
+}
+.specialistName{
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+
+}
+.btn-DL{
+    border-top: 1px solid #a7a5a5;
+    padding-top: 10px;
+}
+.specialistName1{
+    padding: 20px;
+    box-shadow: 4px 4px 4px rgba(209, 209, 209);
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background-color: rgb(229, 236, 232);
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+.specialistName1:hover{
+    background-color: rgb(8, 84, 44);
+    color: white;
+    cursor: pointer;
+}

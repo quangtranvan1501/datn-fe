@@ -56,7 +56,7 @@ export class SheduleListComponent implements OnInit{
 
 
   ngOnInit(): void {
-    const currentUser = localStorage.getItem('currentUser')
+    const currentUser = sessionStorage.getItem('currentUser')
     if (!currentUser) {
       return;
     }

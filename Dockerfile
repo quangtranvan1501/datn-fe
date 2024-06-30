@@ -1,19 +1,29 @@
-# Step 1: Build the app in image 'builder'
+# Sử dụng image node 16 chính thức
 FROM node:16-alpine AS builder
 
-WORKDIR /usr/src/app
+# Thiết lập thư mục làm việc
+WORKDIR /app
+
+# Sao chép package.json và package-lock.json vào thư mục làm việc
+COPY package*.json ./
+
+# Cài đặt các dependencies
+RUN npm install
+
+# Sao chép toàn bộ mã nguồn vào thư mục làm việc
 COPY . .
-RUN npm install && npm run build
 
-# FROM nginx:1.21.3-alpine
+# Build ứng dụng Angular
+RUN npm run build --prod
 
-# # Use COPY --link to avoid breaking cache if we change the second stage base image
-# COPY --link nginx.conf /etc/nginx/conf.d/default.conf
+# Sử dụng image nginx chính thức
+FROM nginx:alpine
 
-# COPY --link --from=builder /usr/src/app/dist/datn_frontend2/ /usr/share/nginx/html
+# Sao chép build của Angular vào thư mục mặc định của nginx để phục vụ ứng dụng
+COPY --from=builder /app/dist/your-angular-app /usr/share/nginx/html
 
-# EXPOSE 80
+# Expose port 80
+EXPOSE 80
 
-# CMD ["nginx", "-g", "daemon off;"]
-
-CMD [ "npm", "start" ]
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]

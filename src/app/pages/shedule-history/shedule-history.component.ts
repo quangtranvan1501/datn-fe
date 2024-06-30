@@ -23,13 +23,12 @@ export class SheduleHistoryComponent implements OnInit {
 
   confirmDelete(examinationSchedulesId:string): void {
     this.modal.confirm({
-      nzTitle: 'Are you sure delete this task?',
-      nzContent: '<b style="color: red;">Some descriptions</b>',
-      nzOkText: 'Yes',
+      nzTitle: 'Bạn muốn xóa lịch khám?',
+      nzOkText: 'Xóa',
       nzOkType: 'primary',
       nzOkDanger: true,
       nzOnOk: () => this.delete(examinationSchedulesId),
-      nzCancelText: 'No',
+      nzCancelText: 'Hủy',
       nzOnCancel: () => this.handleCancel()
     });
   }
@@ -56,7 +55,7 @@ export class SheduleHistoryComponent implements OnInit {
   }
 
   ngOnInit() {
-    const currentUser = localStorage.getItem('currentUser')
+    const currentUser = sessionStorage.getItem('currentUser')
     if (currentUser) {
       this.user = JSON.parse(currentUser)
     }

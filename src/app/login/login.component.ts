@@ -187,6 +187,7 @@ export class LoginComponent {
           return this.message.error('Unknown error occurred.');
         }
         if (response.body.code == 201) {
+          this.router.navigate(['/login']);
           this.isLoading = false;
           return this.message.success(response.body.message)
         }
@@ -195,8 +196,15 @@ export class LoginComponent {
           return this.message.error(response.body.message);
         }
         return this.message.error('Unknown error occurred.');
-      })
-      this.isLoading = false;
+      }, error => {
+        // Handle network or other call failures
+        if (error.error && error.error.message) {
+          this.isLoading = false;
+          return this.message.error(error.error.message);
+        }
+        return this.message.error('Đã có lỗi xảy ra vui lòng thử lại');
+      }
+      );
     } else {
       Object.values(this.validateFormRegister.controls).forEach(control => {
         if (control.invalid) {

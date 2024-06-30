@@ -57,6 +57,12 @@ button{
 .avatar{
     box-shadow: 2px 2px 4px rgba(209, 209, 209, 0.5);
 }
+.tiletHeader{
+    font-size: 18px;
+    font-weight: 700;
+    color: rgb(8, 84, 44);
+    padding-left: 20px;
+}
 @media (max-width: 500px) {
     .search {
       display: none;

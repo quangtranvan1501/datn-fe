@@ -54,7 +54,7 @@ export class ProfileComponent {
     window.location.reload();
   }
   ngOnInit() {
-    const currentUser = localStorage.getItem('currentUser')
+    const currentUser = sessionStorage.getItem('currentUser')
     this.i18n.setLocale(vi_VN);
     if (currentUser) {
       this.user = JSON.parse(currentUser)

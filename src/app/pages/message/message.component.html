@@ -28,15 +28,15 @@
             </div>
             <div class="chat-container" nz-col nzSpan="20">
                 <div class="messages">
-                    <div *ngFor="let message of messages" class="message" [ngClass]="{ 'sent': message.from != userId, 'received': message.from == userId }">
+                    <div *ngFor="let message of messages" class="message" [ngClass]="{ 'sent': message.senderID == user.userId, 'received': message.senderID != user.userId }">
                         {{message.message}}
                     </div>
                 </div>
                 <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
-                    <input type="text" nz-input [(ngModel)]="message" />
+                    <input type="text" nz-input [(ngModel)]="message" (keydown.enter)="sendMessage2()"/>
                 </nz-input-group>
                 <ng-template #suffixIconButton>
-                    <button nz-button nzType="primary" nzSearch (click)="sendMessage()"><span nz-icon
+                    <button nz-button nzType="primary" nzSearch (click)="sendMessage2()"><span nz-icon
                             nzType="send"></span></button>
                 </ng-template>
             </div>

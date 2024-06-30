@@ -38,6 +38,21 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { RecordHistoryComponent } from '../record-history/record-history.component';
 import { MessageComponent } from '../message/message.component';
+import { ChatBotComponent } from '../chat-bot/chat-bot.component';
+import { ReturnPaymentComponent } from '../return-payment/return-payment.component';
+import { NzResultModule } from 'ng-zorro-antd/result';
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
+import { TaiMuiHongComponent } from './page-specialist/tai-mui-hong/tai-mui-hong.component';
+import { KhoaNoiComponent } from './page-specialist/khoa-noi/khoa-noi.component';
+import { KhoaNgoaiComponent } from './page-specialist/khoa-ngoai/khoa-ngoai.component';
+import { KhoaPhuSanComponent } from './page-specialist/khoa-phu-san/khoa-phu-san.component';
+import { KhoaMatComponent } from './page-specialist/khoa-mat/khoa-mat.component';
+import { KhoaNhiComponent } from './page-specialist/khoa-nhi/khoa-nhi.component';
+import { KhoaRangHamMatComponent } from './page-specialist/khoa-rang-ham-mat/khoa-rang-ham-mat.component';
+import { KhoaXQuangComponent } from './page-specialist/khoa-x-quang/khoa-x-quang.component';
+import { TrungTamSieuAmComponent } from './page-specialist/trung-tam-sieu-am/trung-tam-sieu-am.component';
+import { TrungTamXetNhiemComponent } from './page-specialist/trung-tam-xet-nhiem/trung-tam-xet-nhiem.component';
+import { KhoaNoiSoiTieuHoaComponent } from './page-specialist/khoa-noi-soi-tieu-hoa/khoa-noi-soi-tieu-hoa.component';
 @NgModule({
   imports: [
     WelcomeRoutingModule,
@@ -64,7 +79,9 @@ import { MessageComponent } from '../message/message.component';
     NzSelectModule,
     NzStepsModule,
     NzPaginationModule,
-    NzTagModule
+    NzTagModule,
+    NzResultModule,
+    NzCarouselModule
   ],
   declarations: [
     WelcomeComponent,
@@ -78,7 +95,20 @@ import { MessageComponent } from '../message/message.component';
     OrderHistoryComponent,
     SheduleHistoryComponent,
     RecordHistoryComponent,
-    MessageComponent
+    MessageComponent,
+    ChatBotComponent,
+    ReturnPaymentComponent,
+    TaiMuiHongComponent,
+    KhoaNoiComponent,
+    KhoaNgoaiComponent,
+    KhoaPhuSanComponent,
+    KhoaMatComponent,
+    KhoaNhiComponent,
+    KhoaRangHamMatComponent,
+    KhoaXQuangComponent,
+    TrungTamSieuAmComponent,
+    TrungTamXetNhiemComponent,
+    KhoaNoiSoiTieuHoaComponent
   ],
   exports: [WelcomeComponent, NavBarComponent],
   providers: [
